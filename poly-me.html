@@ -1,0 +1,34 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+`poly-me`
+A web based resume using polymer
+
+@demo demo/index.html 
+-->
+
+<dom-module id="poly-me">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2>Hello [[prop1]]</h2>
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'poly-me',
+
+      properties: {
+        prop1: {
+          type: String,
+          value: 'poly-me',
+        },
+      },
+
+    });
+  </script>
+</dom-module>

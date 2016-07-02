@@ -1,0 +1,29 @@
+{
+  "name": "poly-me",
+  "version": "0.0.1",
+  "description": "A web based resume using polymer",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sbeleidy/poly-me"
+  },
+  "authors": [
+    "Saad Elbeleidy <sbeleidy90@gmail.com>"
+  ],
+  "keywords": [
+    "web-component",
+    "polymer",
+    "resume"
+  ],
+  "license": "MIT",
+  "homepage": "https://sbeleidy.github.io/poly-me",
+  "main": "poly-me.html",
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.4.0"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^1.0.0",
+    "web-component-tester": "^4.0.0",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0"
+  }
+}
