@@ -1,0 +1,72 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-card/paper-card.html">
+
+
+<!--
+`poly-me-section`
+A section of the web based resume
+
+Example:
+```
+  <poly-me-section data="{{data.section[0]}}"></poly-me-section>
+```
+
+-->
+
+<dom-module id="poly-me-section">
+  <template>
+    <style include="iron-flex iron-flex-alignment">
+      :host {
+        display: block;
+      }
+    </style>
+
+    <h2>{{data.title}}</h2>
+    <p>{{data.content}}</p>
+    
+    <template is="dom-if" if="{{_checkEquals(data.type, 'content')}}">
+      <div class="subsections layout horizontal">
+        <template is="dom-repeat" items="{{data.sections}}" as="subdata">
+          <div class="sub flex">
+            <h3>{{subdata.title}}</h3>
+            <img src$="{{subdata.image}}" alt$="{{subdata.title}}">
+            <p>{{subdata.content}}</p>
+          </div>
+        </template>
+      </div>
+    </template>
+
+    <template is="dom-if" if="{{_checkEquals(data.type, 'cards')}}">
+      <div class="subsections layout horizontal wrap">
+        <template is="dom-repeat" items="{{data.sections}}" as="subdata">
+          <paper-card class="sub flex">
+            <h3>{{subdata.title}}</h3>
+            <img src$="{{subdata.image}}" alt$="{{subdata.title}}">
+            <p>{{subdata.content}}</p>
+          </paper-card>
+        </template>
+      </div>
+    </template>
+
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'poly-me-section',
+
+      properties: {
+        /**
+         * The section data
+         */
+        data: {
+          type: Object
+        }
+      },
+
+      _checkEquals: function(a,b){
+        return a == b;
+      }
+    });
+  </script>
+</dom-module>

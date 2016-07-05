@@ -18,7 +18,11 @@
   "homepage": "https://sbeleidy.github.io/poly-me",
   "main": "poly-me.html",
   "dependencies": {
-    "polymer": "Polymer/polymer#^1.4.0"
+    "polymer": "Polymer/polymer#^1.4.0",
+    "components-font-awesome": "^4.6.3",
+    "paper-card": "PolymerElements/paper-card#^1.1.1",
+    "iron-pages": "PolymerElements/iron-pages#^1.0.7",
+    "paper-tabs": "PolymerElements/paper-tabs#^1.6.2"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",

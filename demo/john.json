@@ -1,4 +1,154 @@
 {
-  "name": "John Smith",
-  "position": "Product Manager"
+  "content": {
+    "name": "John Smith",
+    "position": "Product Manager",
+    "social": {
+      "title": "get in touch",
+      "profiles": [
+        {
+          "network": "twitter",
+          "link": "https://twitter.com/sbeleidy"
+        },
+        {
+          "network": "github",
+          "link": "https://github.com/sbeleidy"
+        },
+        {
+          "network": "linkedin",
+          "link": "https://linkedin.com/in/saadelbeleidy"
+        }
+      ]
+    },
+    "sections": [
+      {
+        "title": "About",
+        "type": "content",
+        "content": "This is a very long message about me. I'm so amazing at everything I do. I'm just awesome you should check out more information about me by looking through the tabs for more awesome stuff!!",
+        "sections": [
+          {
+            "title": "Awesome 1",
+            "image": "",
+            "content": "This is so awesome cause it's 1"
+          },
+          {
+            "title": "Awesome 2",
+            "image": "",
+            "content": "This is so awesome cause it's 2"
+          },
+          {
+            "title": "Awesome 3",
+            "image": "",
+            "content": "This is so awesome cause it's 3"
+          }
+        ]
+      },
+      {
+        "title": "Stuff",
+        "type": "cards",
+        "content": "This is a section heading before the cards",
+        "sections": [
+          {
+            "title": "Awesome 1",
+            "image": "",
+            "content": "This is so awesome cause it's 1"
+          },
+          {
+            "title": "Awesome 2",
+            "image": "",
+            "content": "This is so awesome cause it's 2"
+          },
+          {
+            "title": "Awesome 3",
+            "image": "",
+            "content": "This is so awesome cause it's 3"
+          }
+        ]
+      },
+      {
+        "title": "Stuff",
+        "type": "cards",
+        "content": "This is a section heading before the cards",
+        "sections": [
+          {
+            "title": "Awesome 1",
+            "image": "",
+            "content": "This is so awesome cause it's 1"
+          },
+          {
+            "title": "Awesome 2",
+            "image": "",
+            "content": "This is so awesome cause it's 2"
+          },
+          {
+            "title": "Awesome 3",
+            "image": "",
+            "content": "This is so awesome cause it's 3"
+          }
+        ]
+      },
+      {
+        "title": "Stuff",
+        "type": "cards",
+        "content": "This is a section heading before the cards",
+        "sections": [
+          {
+            "title": "Awesome 1",
+            "image": "",
+            "content": "This is so awesome cause it's 1"
+          },
+          {
+            "title": "Awesome 2",
+            "image": "",
+            "content": "This is so awesome cause it's 2"
+          },
+          {
+            "title": "Awesome 3",
+            "image": "",
+            "content": "This is so awesome cause it's 3"
+          },
+          {
+            "title": "Awesome 1",
+            "image": "",
+            "content": "This is so awesome cause it's 1"
+          },
+          {
+            "title": "Awesome 2",
+            "image": "",
+            "content": "This is so awesome cause it's 2"
+          },
+          {
+            "title": "Awesome 3",
+            "image": "",
+            "content": "This is so awesome cause it's 3"
+          }
+        ]
+      },
+      {
+        "title": "Stuff",
+        "type": "cards",
+        "content": "This is a section heading before the cards",
+        "sections": [
+          {
+            "title": "Awesome 1",
+            "image": "",
+            "content": "This is so awesome cause it's 1"
+          },
+          {
+            "title": "Awesome 2",
+            "image": "",
+            "content": "This is so awesome cause it's 2"
+          },
+          {
+            "title": "Awesome 3",
+            "image": "",
+            "content": "This is so awesome cause it's 3"
+          }
+        ]
+      }
+    ]
+  },
+  "settings": {
+    
+  }
+  
 }

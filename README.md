@@ -8,6 +8,12 @@ A web based résumé using polymer
 bower install poly-me
 ```
 
+
+## JSON Profile Spec
+
+Font awesome icons for social accounts. See names [here](http://fontawesome.io/icons/#brand)
+
+
 ## Contributing
 
 ### Install the Polymer-CLI

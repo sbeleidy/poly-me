@@ -1,21 +1,68 @@
 <link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../iron-pages/iron-pages.html">
+<link rel="import" href="../paper-tabs/paper-tabs.html">
+
+<link rel="import" href="poly-me-section.html">
+
+<link rel="stylesheet" href="../components-font-awesome/css/font-awesome.min.css">
+
 
 <!--
 `poly-me`
 A web based resume using polymer
+
+Example:
+```
+  <poly-me src="john.json"></poly-me>
+```
 
 @demo demo/index.html 
 -->
 
 <dom-module id="poly-me">
   <template>
-    <style>
+    <style include="iron-flex iron-flex-alignment">
       :host {
         display: block;
       }
     </style>
-    <h1>{{data.name}}</h1>
-    <h2>{{data.position}}</h2>
+
+    <div>
+      <!--Center content-->
+      <div class="name">{{data.name}}</div>
+      <div class="position">{{data.position}}</div>
+
+      <hr>
+      <div class="social">
+        <div class="social-title">
+          {{data.social.title}}
+        </div>
+        <div class="social-profiles">
+          <template is="dom-repeat" items="{{data.social.profiles}}">
+            <a href$="{{item.link}}" target="_blank">
+              <i class$="fa fa-{{item.network}}"></i>
+            </a>
+          </template>
+        </div>
+      </div>
+
+      <paper-tabs selected="{{selected}}">
+        <template is="dom-repeat" items="{{data.sections}}">
+          <paper-tab>{{item.title}}</paper-tab>
+        </template>
+      </paper-tabs>
+
+      <iron-pages selected="{{selected}}">
+        <template is="dom-repeat" items="{{data.sections}}" as="section">
+          <poly-me-section data="{{section}}"></poly-me-section>
+        </template>
+      </iron-pages>
+        
+      </div>
+
+    </div>
+
   </template>
 
   <script>
@@ -24,10 +71,12 @@ A web based resume using polymer
       is: 'poly-me',
 
       properties: {
+        /**
+         * The path to the json file with the profile data
+         */
         src: {
           type: String
-        },
-        data: Object
+        }
       },
 
       attached: function(){
@@ -35,7 +84,7 @@ A web based resume using polymer
         this.data = fetch(this.src).then(function(res){
           return res.json();
         }).then(function(json){
-          self.data = json;
+          self.data = json.content;
         });
       }
 
