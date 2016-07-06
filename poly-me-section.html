@@ -1,5 +1,7 @@
 <link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../paper-card/paper-card.html">
+<link rel="import" href="../paper-input/paper-input.html">
+<link rel="import" href="../paper-input/paper-textarea.html">
+<link rel="import" href="../paper-button/paper-button.html">
 
 
 <!--
@@ -18,14 +20,46 @@ Example:
     <style include="iron-flex iron-flex-alignment">
       :host {
         display: block;
+        padding: 10px;
+        margin: 10px auto;
+        max-width: 1000px;
+        font-family: 'Roboto', 'Noto', sans-serif;
+        line-height: 1.5;
       }
-    </style>
 
-    <h2>{{data.title}}</h2>
-    <p>{{data.content}}</p>
+      .sub {
+        min-width: 200px;
+        max-width: 300px;
+        padding: 10px;
+        margin: 20px;
+      }
+
+      .contact {
+        max-width: 500px;
+        margin: 0 auto;
+      }
+
+      .contact h2, .contact p {
+        text-align: center;
+      }
+
+      .contact paper-button {
+        margin: 20px auto;
+        display: block;
+        max-width: 100px;
+        text-align: center;
+      }
+
+      .paper-button-link {
+        text-decoration: none;
+      }
+
+    </style>
     
     <template is="dom-if" if="{{_checkEquals(data.type, 'content')}}">
-      <div class="subsections layout horizontal">
+      <h2>{{data.title}}</h2>
+      <p>{{data.content}}</p>
+      <div class="subsections layout horizontal wrap around-justified">
         <template is="dom-repeat" items="{{data.sections}}" as="subdata">
           <div class="sub flex">
             <h3>{{subdata.title}}</h3>
@@ -37,15 +71,43 @@ Example:
     </template>
 
     <template is="dom-if" if="{{_checkEquals(data.type, 'cards')}}">
-      <div class="subsections layout horizontal wrap">
+      <h2>{{data.title}}</h2>
+      <p>{{data.content}}</p>      
+      <div class="subsections layout horizontal wrap around-justified">
         <template is="dom-repeat" items="{{data.sections}}" as="subdata">
-          <paper-card class="sub flex">
+          <paper-card class="sub flex" image="{{subdata.image}}">
             <h3>{{subdata.title}}</h3>
-            <img src$="{{subdata.image}}" alt$="{{subdata.title}}">
+            <!--<img src$="{{subdata.image}}" alt$="{{subdata.title}}">-->
             <p>{{subdata.content}}</p>
+            <template is="dom-if" if={{_isSet(subdata.link)}}>
+              <div class="card-actions">
+                <a href$="{{subdata.link}}" class="paper-button-link" tabindex="-1">
+                  <template is="dom-if" if={{!_isSet(subdata.linkButton)}}>
+                    <paper-button raised>View</paper-button>
+                  </template>
+                  <template is="dom-if" if={{_isSet(subdata.linkButton)}}>
+                    <paper-button raised>{{subdata.linkButton}}</paper-button>
+                  </template>
+                </a>
+              </div>
+            </template>
           </paper-card>
         </template>
       </div>
+    </template>
+
+    <template is="dom-if" if="{{_checkEquals(data.type, 'contact')}}">
+      <div class="contact layout vertical around-justified">
+        <h2>{{data.title}}</h2>
+        <p>{{data.content}}</p>
+        <form id="contactForm" action="https://formspree.io/{{data.email}}" method="POST">
+            <paper-input type="text" name="name" label="Name"></paper-input>
+            <paper-input type="email" name="_replyto" label="Email Address"></paper-input>
+            <paper-textarea rows="5" name="message" label="Message"></paper-textarea>
+            <input type="text" name="_gotcha" style="display:none" />
+            <input type="hidden" name="_subject" value="{{data.subject}}" />
+            <paper-button on-tap="_submitContactForm" raised class="center">Send</paper-button>
+        </form>
     </template>
 
   </template>
@@ -66,6 +128,14 @@ Example:
 
       _checkEquals: function(a,b){
         return a == b;
+      },
+
+      _isSet: function(a){
+        return a != null && typeof a !== 'undefined';
+      },
+
+      _submitContactForm: function(){
+        this.$$("#contactForm").submit();
       }
     });
   </script>
