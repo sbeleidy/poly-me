@@ -3,22 +3,22 @@
     "name": "John Smith",
     "profileImage": "img/profile.jpg",
     "backgroundImage": "img/background.jpeg",
-    "position": "Product Manager",
+    "position": "Awesome",
     "location": "San Francisco, CA",
     "social": {
       "title": "",
       "profiles": [
         {
           "network": "twitter",
-          "link": "https://twitter.com/sbeleidy"
+          "link": "https://twitter.com/john"
         },
         {
           "network": "github",
-          "link": "https://github.com/sbeleidy"
+          "link": "https://github.com/john"
         },
         {
           "network": "linkedin",
-          "link": "https://linkedin.com/in/saadelbeleidy"
+          "link": "https://linkedin.com/in/john"
         }
       ]
     },
