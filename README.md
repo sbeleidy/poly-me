@@ -1,5 +1,7 @@
 # poly-mé
 
+[![Join the chat at https://gitter.im/sbeleidy/poly-me](https://badges.gitter.im/sbeleidy/poly-me.svg)](https://gitter.im/sbeleidy/poly-me?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 A web based résumé using polymer
 
 ## Installation & Setup
