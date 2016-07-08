@@ -11,12 +11,71 @@
 
 <!--
 `poly-me`
-A web based resume using polymer
+
+A web based resume using polymer. You can add your information in a .json file
+and link to it as follows:
 
 Example:
 ```
   <poly-me src="john.json"></poly-me>
 ```
+
+The `.json` file structure should be as follows:
+
+```
+{
+  "content": {
+    "name": "Your name",
+    "profileImage": "path to profile image",
+    "backgroundImage": "path to background image",
+    "position": "Your position or title",
+    "location": "Your location",
+    "social": {
+      "title": "a title to the social section underneath the profile info",
+      "profiles": [
+        {
+          "network": "the icon name from the font awesome cheatsheet see http://fontawesome.io/icons/#brand",
+          "link": "the link to go to when clicked"
+        },...
+      ]
+    },
+    "sections": [
+      {
+        "title": "The section title that will appear as the tab name and section header",
+        "type": "The type of section to display",
+        "content": "The content text to display before the cards or main content",
+        "sections": [
+          {
+            "title": "The title of each section listed in the tab",
+            "image": "The path to the image displauyed in each subsection",
+            "content": "The text content of each subsection"
+          },...
+        ]
+      },
+      {
+        "title": "Contact",
+        "type": "contact",
+        "content": "This is a section heading before the cards",
+        "email": "sbeleidy90@gmail.com",
+        "subject": "Poly-me contact form submission"
+      }
+    ]
+  },
+  "settings": {
+    "primaryColor": "The hex value of the primary color for the app - use something close to the background image colors"
+  }
+  
+}
+```
+
+Available section types are:
+
+- content - basic content
+- card - same as content but shown as cards
+- contact - will show a contact form that uses formspree.io to send you an email
+    - `email` - the email to send the message to
+    - `subject` - the subject of the email that gets sent
+
 
 @demo demo/index.html 
 -->
@@ -29,6 +88,7 @@ Example:
         margin: 0;
         font-family: 'Roboto', 'Noto', sans-serif;
         line-height: 1.5;
+        --paper-tabs-selection-bar-color: red;
       }
 
       .center-div {
@@ -67,7 +127,7 @@ Example:
 
       paper-tabs {
         margin: 0px auto;
-        max-width: 500px;
+        max-width: 600px;
       }
 
       .tabs-div, .center-div {
@@ -112,7 +172,7 @@ Example:
     </div>
 
     <div class="tabs-div">
-      <paper-tabs selected="{{selected}}">
+      <paper-tabs selected="{{selected}}" scrollable>
         <template is="dom-repeat" items="{{data.sections}}">
           <paper-tab>{{item.title}}</paper-tab>
         </template>
@@ -154,6 +214,7 @@ Example:
 
           self.customStyle['--primary-color'] = json.settings.primaryColor == null ? 'blue' : json.settings.primaryColor;
           self.customStyle['--bg-image'] = "url('"+json.content.backgroundImage + "')";
+          self.customStyle['--paper-tabs-selection-bar-color'] = json.settings.primaryColor == null ? 'green' : json.settings.tabBarColor;
           self.updateStyles();
 
         });

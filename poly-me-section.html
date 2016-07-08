@@ -28,18 +28,36 @@ Example:
       }
 
       .sub {
-        min-width: 200px;
+        min-width: 250px;
         max-width: 300px;
         padding: 10px;
         margin: 20px;
       }
 
+      .content.section p {
+        text-align: center;
+      }
+
+      .content .sub h3 {
+        text-align: center;
+      }
+
+      .content .sub img {
+        margin: 0 auto;
+        display: block;
+        fill: var(--primary-color);
+      }
+
+      paper-card {
+        padding: 10px 20px;
+      }
+
       .contact {
-        max-width: 500px;
+        max-width: 600px;
         margin: 0 auto;
       }
 
-      .contact h2, .contact p {
+      .contact h3, .contact p {
         text-align: center;
       }
 
@@ -57,23 +75,26 @@ Example:
     </style>
     
     <template is="dom-if" if="{{_checkEquals(data.type, 'content')}}">
-      <h2>{{data.title}}</h2>
-      <p>{{data.content}}</p>
-      <div class="subsections layout horizontal wrap around-justified">
-        <template is="dom-repeat" items="{{data.sections}}" as="subdata">
-          <div class="sub flex">
-            <h3>{{subdata.title}}</h3>
-            <img src$="{{subdata.image}}" alt$="{{subdata.title}}">
-            <p>{{subdata.content}}</p>
-          </div>
-        </template>
+      <div class="content section">
+        <!--<h2>{{data.title}}</h2>-->
+        <p>{{data.content}}</p>
+        <div class="content subsections layout horizontal wrap around-justified">
+          <template is="dom-repeat" items="{{data.sections}}" as="subdata">
+            <div class="sub flex">
+              <h3>{{subdata.title}}</h3>
+              <img src$="{{subdata.image}}" alt$="{{subdata.title}}">
+              <p>{{subdata.content}}</p>
+            </div>
+          </template>
+        </div>
+        <p>{{data.lowerContent}}</p>
       </div>
     </template>
 
     <template is="dom-if" if="{{_checkEquals(data.type, 'cards')}}">
-      <h2>{{data.title}}</h2>
+      <!--<h2>{{data.title}}</h2>-->
       <p>{{data.content}}</p>      
-      <div class="subsections layout horizontal wrap around-justified">
+      <div class="cards subsections layout horizontal wrap around-justified">
         <template is="dom-repeat" items="{{data.sections}}" as="subdata">
           <paper-card class="sub flex" image="{{subdata.image}}">
             <h3>{{subdata.title}}</h3>
@@ -81,7 +102,7 @@ Example:
             <p>{{subdata.content}}</p>
             <template is="dom-if" if={{_isSet(subdata.link)}}>
               <div class="card-actions">
-                <a href$="{{subdata.link}}" class="paper-button-link" tabindex="-1">
+                <a href$="{{subdata.link}}" target="_blank" class="paper-button-link" tabindex="-1">
                   <template is="dom-if" if={{!_isSet(subdata.linkButton)}}>
                     <paper-button raised>View</paper-button>
                   </template>
@@ -96,9 +117,25 @@ Example:
       </div>
     </template>
 
+    <template is="dom-if" if="{{_checkEquals(data.type, 'dated')}}">
+      <!--<h2>{{data.title}}</h2>-->
+      <p>{{data.content}}</p>      
+      <div class="dated subsections layout horizontal wrap around-justified">
+        <template is="dom-repeat" items="{{data.sections}}" as="subdata">
+          <paper-card class="sub flex" image="{{subdata.image}}">
+            <h3>{{subdata.title}}</h3>
+            <!--<img src$="{{subdata.image}}" alt$="{{subdata.title}}">-->
+            <h5><a href$="{{subdata.orgLink}}" target="_blank">{{subdata.org}}</a></h5>
+            <h6>{{subdata.start}} - {{subdata.end}}</h6>
+            <p>{{subdata.content}}</p>
+          </paper-card>
+        </template>
+      </div>
+    </template>
+
     <template is="dom-if" if="{{_checkEquals(data.type, 'contact')}}">
       <div class="contact layout vertical around-justified">
-        <h2>{{data.title}}</h2>
+        <h3>{{data.title}}</h3>
         <p>{{data.content}}</p>
         <form id="contactForm" action="https://formspree.io/{{data.email}}" method="POST">
             <paper-input type="text" name="name" label="Name"></paper-input>
