@@ -113,6 +113,10 @@ Available section types are:
         font-size: 12px;
       }
 
+      .location a {
+        text-decoration: none;
+      }
+
       .profile-image {
         width: 50px;
         height: 50px;
@@ -128,6 +132,10 @@ Available section types are:
       paper-tabs {
         margin: 0px auto;
         max-width: 600px;
+      }
+
+      paper-tab {
+        margin: auto;
       }
 
       .tabs-div, .center-div {
@@ -153,7 +161,7 @@ Available section types are:
           {{data.position}}
         </div>
         <div class="location">
-            <i class="fa fa-map-marker"></i> {{data.location}}
+            <a href$="https://google.com/maps/search/{{data.location}}" target="blank"><i class="fa fa-map-marker"></i> {{data.location}}</a>
           </div>
         <hr>
         <div class="social">
