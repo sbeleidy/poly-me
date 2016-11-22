@@ -1,8 +1,8 @@
 {
   "content": {
     "name": "John Smith",
-    "profileImage": "img/profile.jpg",
-    "backgroundImage": "img/background.jpeg",
+    "profileImage": "/demo/img/profile.jpg",
+    "backgroundImage": "/demo/img/background.jpeg",
     "position": "Awesome",
     "location": "San Francisco, CA",
     "social": {
@@ -26,42 +26,42 @@
       {
         "title": "Content",
         "type": "content",
-        "content": "This is a very long message about me. I'm so amazing at everything I do. I'm just awesome you should check out more information about me by looking through the tabs for more awesome stuff!!",
+        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur. Nam venenatis tellus ac gravida cursus. Mauris volutpat condimentum finibus. Nullam efficitur tempor felis eget varius.",
         "sections": [
           {
             "title": "Awesome 1",
-            "image": "",
-            "content": "This is so awesome cause it's 1"
+            "image": "/demo/img/background.jpeg",
+            "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur."
           },
           {
             "title": "Awesome 2",
-            "image": "",
-            "content": "This is so awesome cause it's 2"
+            "image": "/demo/img/background.jpeg",
+            "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur."
           },
           {
             "title": "Awesome 3",
-            "image": "",
-            "content": "This is so awesome cause it's 3"
+            "image": "/demo/img/background.jpeg",
+            "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur."
           }
         ]
       },
       {
         "title": "Cards",
         "type": "cards",
-        "content": "This is a section heading before the cards",
+        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur.",
         "sections": [
           {
             "title": "Awesome 1",
-            "content": "This is so awesome cause it's 1",
+            "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur.",
             "link": "https://awesome.com"
           },
           {
             "title": "Awesome 2",
-            "content": "This is so awesome cause it's 2"
+            "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur."
           },
           {
             "title": "Awesome 3",
-            "content": "This is so awesome cause it's 3"
+            "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur."
           }
         ]
       },
@@ -73,19 +73,19 @@
           {
             "title": "Awesome 1",
             "image": "img/card-1.jpg",
-            "content": "This is so awesome cause it's 1",
+            "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur.",
             "link": "https://awesome.com",
             "linkButton": "Go!"
           },
           {
             "title": "Awesome 2",
             "image": "img/card-2.jpg",
-            "content": "This is so awesome cause it's 2"
+            "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur."
           },
           {
             "title": "Awesome 3",
             "image": "img/card-3.jpg",
-            "content": "This is so awesome cause it's 3"
+            "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur."
           }
         ]
       },
