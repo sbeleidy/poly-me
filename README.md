@@ -27,6 +27,11 @@ bower install poly-me
   <poly-me src="demo/john.json"></poly-me>
 ```
 
+### JSON Profile Spec
+
+Font awesome icons for social accounts. See names [here](http://fontawesome.io/icons/#brand)
+
+
 The `.json` file structure should be as follows:
 
 ```json
@@ -81,10 +86,6 @@ Available section types are:
 - contact - will show a contact form that uses formspree.io to send you an email
     - `email` - the email to send the message to
     - `subject` - the subject of the email that gets sent
-
-## JSON Profile Spec
-
-Font awesome icons for social accounts. See names [here](http://fontawesome.io/icons/#brand)
 
 
 ## Contributing
