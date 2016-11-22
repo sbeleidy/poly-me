@@ -72,19 +72,19 @@
         "sections": [
           {
             "title": "Awesome 1",
-            "image": "img/card-1.jpg",
+            "image": "/demo/img/card-1.jpg",
             "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur.",
             "link": "https://awesome.com",
             "linkButton": "Go!"
           },
           {
             "title": "Awesome 2",
-            "image": "img/card-2.jpg",
+            "image": "/demo/img/card-2.jpg",
             "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur."
           },
           {
             "title": "Awesome 3",
-            "image": "img/card-3.jpg",
+            "image": "/demo/img/card-3.jpg",
             "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur."
           }
         ]
