@@ -24,7 +24,7 @@ bower install poly-me
 ```
 -->
 ```html
-  <poly-me src="demo/john.json"></poly-me>
+  <poly-me src="demo/johnSmith.json"></poly-me>
 ```
 
 ### JSON Profile Spec
