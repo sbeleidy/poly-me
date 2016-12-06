@@ -1,10 +1,7 @@
 <link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../iron-flex-layout/iron-flex-layout-classes.html">
-<link rel="import" href="../iron-pages/iron-pages.html">
-<link rel="import" href="../paper-tabs/paper-tabs.html">
-<link rel="import" href="../paper-card/paper-card.html">
 
-<link rel="import" href="poly-me-section.html">
+<link rel="import" href="../iron-ajax/iron-ajax.html">
+<link rel="import" href="poly-me-render.html">
 
 
 <!--
@@ -79,123 +76,14 @@ Available section types are:
 -->
 
 <dom-module id="poly-me">
-  <!--<link rel="import" type="css" href="../components-font-awesome/css/font-awesome.min.css">-->
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
-  <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab" rel="stylesheet">
   <template>
-    <style include="iron-flex iron-flex-alignment">
-      :host {
-        display: block;
-        margin: 0;
-        font-family: 'Roboto', 'Noto', sans-serif;
-        line-height: 1.5;
-        --paper-tabs-selection-bar-color: red;
-      }
+    <iron-ajax
+      auto
+      url="[[src]]"
+      handle-as="json"
+      last-response="{{data}}"></iron-ajax>
 
-      .center-div {
-        padding: 30px;
-      }
-
-      .profile {
-        display: block;
-        min-width: 200px;
-        max-width: 350px;
-        text-align: center;
-        margin: 0 auto;
-        padding: 20px;
-      }
-
-      .profile .name {
-        font-size: 22px;
-        padding: 8px 0;
-      }
-
-      .profile .position, .profile .location {
-        font-size: 12px;
-      }
-
-      .location a {
-        text-decoration: none;
-      }
-
-      .profile-image {
-        width: 50px;
-        height: 50px;
-        border-radius: 25px;
-      }
-
-      .social-profiles a{
-        text-decoration: none;
-        color: black;
-        margin: 10px;
-      }
-
-      paper-tabs {
-        margin: 0px auto;
-        max-width: 600px;
-      }
-
-      paper-tab {
-        margin: auto;
-      }
-
-      .tabs-div, .center-div {
-        background-color: var(--primary-color, darkblue);
-      }
-
-      .center-div {
-        background-size: cover;
-        background-image: var(--bg-image);
-      }
-    </style>
-
-    <div class="center-div">
-      <!--Center content-->
-      <paper-card class="profile">
-        <div>
-          <img src$="{{data.profileImage}}" alt$="{{data.name}}" class="profile-image">
-        </div>
-        <div class="name">
-          {{data.name}}
-        </div>
-        <div class="position">
-          {{data.position}}
-        </div>
-        <div class="location">
-            <a href$="https://google.com/maps/search/{{data.location}}" target="blank"><i class="fa fa-map-marker"></i> {{data.location}}</a>
-          </div>
-        <hr>
-        <div class="social">
-          <div class="social-title">
-            {{data.social.title}}
-          </div>
-          <div class="social-profiles">
-            <template is="dom-repeat" items="{{data.social.profiles}}">
-              <a href$="{{item.link}}" target="_blank">
-                <i class$="fa fa-{{item.network}}"></i>
-              </a>
-            </template>
-          </div>
-        </div>
-      </paper-card>
-    </div>
-
-    <div class="tabs-div">
-      <paper-tabs selected="{{selected}}" scrollable>
-        <template is="dom-repeat" items="{{data.sections}}">
-          <paper-tab>{{item.title}}</paper-tab>
-        </template>
-      </paper-tabs>
-    </div>
-
-    <div>
-      <iron-pages selected="{{selected}}">
-        <template is="dom-repeat" items="{{data.sections}}" as="section">
-          <poly-me-section data="{{section}}"></poly-me-section>
-        </template>
-      </iron-pages>
-
-    </div>
+    <poly-me-render data="[[data]]"></poly-me-render>
 
   </template>
 
@@ -211,22 +99,6 @@ Available section types are:
         src: {
           type: String
         }
-      },
-
-      attached: function(){
-        this.selected = 0;
-        var self = this;
-        this.data = fetch(this.src).then(function(res){
-          return res.json();
-        }).then(function(json){
-          self.data = json.content;
-
-          self.customStyle['--primary-color'] = json.settings.primaryColor == null ? 'blue' : json.settings.primaryColor;
-          self.customStyle['--bg-image'] = "url('"+json.content.backgroundImage + "')";
-          self.customStyle['--paper-tabs-selection-bar-color'] = json.settings.primaryColor == null ? 'green' : json.settings.tabBarColor;
-          self.updateStyles();
-
-        });
       }
 
     });
