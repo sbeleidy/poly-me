@@ -90,6 +90,37 @@
         ]
       },
       {
+        "title": "Dated Cards",
+        "type": "dated",
+        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur.",
+        "sections": [
+          {
+            "title": "Awesome 1",
+            "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur.",
+            "org": "Awesome",
+            "orgLink": "https://awesome.com",
+            "start": "20th Dec 2016",
+            "end": "20th Dec 2020"
+          },
+          {
+            "title": "Awesome 2",
+            "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur.",
+            "org": "Awesome",
+            "orgLink": "https://awesome.com",
+            "start": "20th Dec 2016",
+            "end": "20th Dec 2020"
+          },
+          {
+            "title": "Awesome 3",
+            "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur.",
+            "org": "Awesome",
+            "orgLink": "https://awesome.com",
+            "start": "20th Dec 2016",
+            "end": "20th Dec 2020"
+          }
+        ]
+      },
+      {
         "title": "Contact",
         "type": "contact",
         "content": "This is a section heading before the cards",

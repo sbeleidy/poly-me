@@ -1,0 +1,120 @@
+<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../../paper-button/paper-button.html">
+
+
+<!--
+`cards-section`
+
+A section of poly-me that displays some cards.
+
+Section data should be structured as follows:
+
+```
+{
+  "title": "Name to appear in tab",
+  "type": "cards",
+  "content": "optional paragraph text to appear at the top before the cards"
+  "sections": [
+    {
+      "title": "card header",
+      "content": "main card text",
+      "image": "Optional image for the card"
+      "link": "Optional link that the button will lead to",
+      "linkButton": "Optional text that the button will state - default is View"
+    },
+    {
+      // Repeat for more cards
+    },
+    ...
+  ],
+  "lowerContent": "optional paragraph text to appear at the bottom after the cards"
+}
+```
+
+Usage Example:
+```
+  <cards-section data="[[data]]"></cards-section>
+```
+
+
+
+-->
+
+<dom-module id="cards-section">
+  <template>
+    <style include="iron-flex iron-flex-alignment">
+      :host {
+        display: block;
+        padding: 10px;
+        margin: 10px auto;
+        max-width: 1000px;
+        font-family: 'Roboto', 'Noto', sans-serif;
+        line-height: 1.5;
+      }
+
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Roboto Slab';
+      }
+
+      .sub {
+        min-width: 250px;
+        max-width: 300px;
+        padding: 10px;
+        margin: 20px;
+      }
+
+      paper-card {
+        padding: 10px 20px;
+      }
+
+      .paper-button-link {
+        text-decoration: none;
+      }
+
+    </style>
+
+
+    <p>{{data.content}}</p>      
+    <div class="cards subsections layout horizontal wrap around-justified">
+      <template is="dom-repeat" items="{{data.sections}}" as="subdata">
+        <paper-card class="sub flex" image="{{subdata.image}}">
+          <h3>{{subdata.title}}</h3>
+          <!--<img src$="{{subdata.image}}" alt$="{{subdata.title}}">-->
+          <p>{{subdata.content}}</p>
+          <template is="dom-if" if={{_isSet(subdata.link)}}>
+            <div class="card-actions">
+              <a href$="{{subdata.link}}" target="_blank" class="paper-button-link" tabindex="-1">
+                <template is="dom-if" if={{!_isSet(subdata.linkButton)}}>
+                  <paper-button raised>View</paper-button>
+                </template>
+                <template is="dom-if" if={{_isSet(subdata.linkButton)}}>
+                  <paper-button raised>{{subdata.linkButton}}</paper-button>
+                </template>
+              </a>
+            </div>
+          </template>
+        </paper-card>
+      </template>
+    </div>
+    <p>{{data.lowerContent}}</p> 
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'cards-section',
+
+      properties: {
+        /**
+         * The section data
+         */
+        data: {
+          type: Object
+        }
+      },
+      _isSet: function(a){
+        return a != null && typeof a !== 'undefined';
+      },
+    });
+  </script>
+</dom-module>

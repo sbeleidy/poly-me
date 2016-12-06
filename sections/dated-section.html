@@ -1,0 +1,107 @@
+<link rel="import" href="../../polymer/polymer.html">
+
+
+<!--
+`dated-section`
+
+A section of poly-me that displays cards with dated information.
+
+Section data should be structured as follows:
+
+```
+{
+  "title": "Name to appear in tab",
+  "type": "dated",
+  "content": "optional paragraph text to appear at the top before the cards"
+  "sections": [
+    {
+      "title": "card header",
+      "content": "main card text",
+      "image": "Optional image for the card",
+      "org": "Subtitle ex. organization",
+      "orgLink": "Subtitle link",
+      "start" "Start date",
+      "end": "End date"
+    },
+    {
+      // Repeat for more cards
+    },
+    ...
+  ],
+  "lowerContent": "optional paragraph text to appear at the bottom after the cards"
+}
+```
+
+Usage Example:
+```
+  <dated-section data="[[data]]"></dated-section>
+```
+
+
+
+-->
+
+<dom-module id="dated-section">
+  <template>
+    <style include="iron-flex iron-flex-alignment">
+      :host {
+        display: block;
+        padding: 10px;
+        margin: 10px auto;
+        max-width: 1000px;
+        font-family: 'Roboto', 'Noto', sans-serif;
+        line-height: 1.5;
+      }
+
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Roboto Slab';
+      }
+
+      .sub {
+        min-width: 250px;
+        max-width: 300px;
+        padding: 10px;
+        margin: 20px;
+      }
+
+      paper-card {
+        padding: 10px 20px;
+      }
+
+    </style>
+
+
+    <p>{{data.content}}</p>      
+      <div class="dated subsections layout horizontal wrap around-justified">
+        <template is="dom-repeat" items="{{data.sections}}" as="subdata">
+          <paper-card class="sub flex" image="{{subdata.image}}">
+            <h3>{{subdata.title}}</h3>
+            <!--<img src$="{{subdata.image}}" alt$="{{subdata.title}}">-->
+            <h5><a href$="{{subdata.orgLink}}" target="_blank">{{subdata.org}}</a></h5>
+            <h6>{{subdata.start}} - {{subdata.end}}</h6>
+            <p>{{subdata.content}}</p>
+          </paper-card>
+        </template>
+      </div>
+    <p>{{data.lowerContent}}</p> 
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'dated-section',
+
+      properties: {
+        /**
+         * The section data
+         */
+        data: {
+          type: Object
+        }
+      },
+      _isSet: function(a){
+        return a != null && typeof a !== 'undefined';
+      },
+    });
+  </script>
+</dom-module>

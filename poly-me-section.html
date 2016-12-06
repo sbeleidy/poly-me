@@ -1,155 +1,38 @@
 <link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../paper-input/paper-input.html">
-<link rel="import" href="../paper-input/paper-textarea.html">
-<link rel="import" href="../paper-button/paper-button.html">
 
+<link rel="import" href="sections/cards-section.html">
+<link rel="import" href="sections/content-section.html">
+<link rel="import" href="sections/contact-section.html">
+<link rel="import" href="sections/dated-section.html">
 
 <!--
 `poly-me-section`
-A section of the web based resume
+A section of the web based resume. This element figures out which section to render.
 
 Example:
 ```
-  <poly-me-section data="{{data.section[0]}}"></poly-me-section>
+  <poly-me-section data="[[data]]"></poly-me-section>
 ```
 
 -->
 
 <dom-module id="poly-me-section">
   <template>
-    <style include="iron-flex iron-flex-alignment">
-      :host {
-        display: block;
-        padding: 10px;
-        margin: 10px auto;
-        max-width: 1000px;
-        font-family: 'Roboto', 'Noto', sans-serif;
-        line-height: 1.5;
-      }
-
-      h1, h2, h3, h4, h5, h6 {
-        font-family: 'Roboto Slab';
-      }
-
-      .sub {
-        min-width: 250px;
-        max-width: 300px;
-        padding: 10px;
-        margin: 20px;
-      }
-
-      .content.section p {
-        text-align: center;
-      }
-
-      .content .sub h3 {
-        text-align: center;
-      }
-
-      .content .sub img {
-        margin: 0 auto;
-        display: block;
-        fill: var(--primary-color);
-        max-width: 100%;
-      }
-
-      paper-card {
-        padding: 10px 20px;
-      }
-
-      .contact {
-        max-width: 600px;
-        margin: 0 auto;
-      }
-
-      .contact h3, .contact p {
-        text-align: center;
-      }
-
-      .contact paper-button {
-        margin: 20px auto;
-        display: block;
-        max-width: 100px;
-        text-align: center;
-      }
-
-      .paper-button-link {
-        text-decoration: none;
-      }
-
-    </style>
     
     <template is="dom-if" if="{{_checkEquals(data.type, 'content')}}">
-      <div class="content section">
-        <!--<h2>{{data.title}}</h2>-->
-        <p>{{data.content}}</p>
-        <div class="content subsections layout horizontal wrap around-justified">
-          <template is="dom-repeat" items="{{data.sections}}" as="subdata">
-            <div class="sub flex">
-              <h3>{{subdata.title}}</h3>
-              <img src$="{{subdata.image}}" alt$="{{subdata.title}}">
-              <p>{{subdata.content}}</p>
-            </div>
-          </template>
-        </div>
-        <p>{{data.lowerContent}}</p>
-      </div>
+      <content-section data="[[data]]"></content-section>
     </template>
 
     <template is="dom-if" if="{{_checkEquals(data.type, 'cards')}}">
-      <!--<h2>{{data.title}}</h2>-->
-      <p>{{data.content}}</p>      
-      <div class="cards subsections layout horizontal wrap around-justified">
-        <template is="dom-repeat" items="{{data.sections}}" as="subdata">
-          <paper-card class="sub flex" image="{{subdata.image}}">
-            <h3>{{subdata.title}}</h3>
-            <!--<img src$="{{subdata.image}}" alt$="{{subdata.title}}">-->
-            <p>{{subdata.content}}</p>
-            <template is="dom-if" if={{_isSet(subdata.link)}}>
-              <div class="card-actions">
-                <a href$="{{subdata.link}}" target="_blank" class="paper-button-link" tabindex="-1">
-                  <template is="dom-if" if={{!_isSet(subdata.linkButton)}}>
-                    <paper-button raised>View</paper-button>
-                  </template>
-                  <template is="dom-if" if={{_isSet(subdata.linkButton)}}>
-                    <paper-button raised>{{subdata.linkButton}}</paper-button>
-                  </template>
-                </a>
-              </div>
-            </template>
-          </paper-card>
-        </template>
-      </div>
+      <cards-section data="[[data]]"></cards-section>
     </template>
 
     <template is="dom-if" if="{{_checkEquals(data.type, 'dated')}}">
-      <!--<h2>{{data.title}}</h2>-->
-      <p>{{data.content}}</p>      
-      <div class="dated subsections layout horizontal wrap around-justified">
-        <template is="dom-repeat" items="{{data.sections}}" as="subdata">
-          <paper-card class="sub flex" image="{{subdata.image}}">
-            <h3>{{subdata.title}}</h3>
-            <!--<img src$="{{subdata.image}}" alt$="{{subdata.title}}">-->
-            <h5><a href$="{{subdata.orgLink}}" target="_blank">{{subdata.org}}</a></h5>
-            <h6>{{subdata.start}} - {{subdata.end}}</h6>
-            <p>{{subdata.content}}</p>
-          </paper-card>
-        </template>
-      </div>
+      <dated-section data="[[data]]"></dated-section>
     </template>
 
     <template is="dom-if" if="{{_checkEquals(data.type, 'contact')}}">
-      <div class="contact layout vertical around-justified">
-        <h3>{{data.title}}</h3>
-        <p>{{data.content}}</p>
-        <form id="contactForm" action="https://formspree.io/{{data.email}}" method="POST">
-            <paper-input type="text" name="name" label="Name"></paper-input>
-            <paper-input type="email" name="_replyto" label="Email Address"></paper-input>
-            <paper-textarea rows="5" name="message" label="Message"></paper-textarea>
-            <input type="text" name="_gotcha" style="display:none" />
-            <input type="hidden" name="_subject" value="{{data.subject}}" />
-            <paper-button on-tap="_submitContactForm" raised class="center">Send</paper-button>
-        </form>
+      <contact-section data="[[data]]"></contact-section>
     </template>
 
   </template>
@@ -170,14 +53,6 @@ Example:
 
       _checkEquals: function(a,b){
         return a == b;
-      },
-
-      _isSet: function(a){
-        return a != null && typeof a !== 'undefined';
-      },
-
-      _submitContactForm: function(){
-        this.$$("#contactForm").submit();
       }
     });
   </script>
