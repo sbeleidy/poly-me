@@ -1,0 +1,228 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../iron-pages/iron-pages.html">
+<link rel="import" href="../paper-tabs/paper-tabs.html">
+<link rel="import" href="../paper-card/paper-card.html">
+
+<link rel="import" href="poly-me-section.html">
+
+
+<!--
+`poly-me`
+
+A web based resume using polymer. You can add your information in an object
+and link to it as follows:
+
+Example:
+```
+  <poly-me-render data="[[myData]]"></poly-me-render>
+```
+
+The object structure should be as follows:
+
+```
+{
+  "content": {
+    "name": "Your name",
+    "profileImage": "path to profile image",
+    "backgroundImage": "path to background image",
+    "position": "Your position or title",
+    "location": "Your location",
+    "social": {
+      "title": "a title to the social section underneath the profile info",
+      "profiles": [
+        {
+          "network": "the icon name from the font awesome cheatsheet see http://fontawesome.io/icons/#brand",
+          "link": "the link to go to when clicked"
+        },...
+      ]
+    },
+    "sections": [
+      {
+        "title": "The section title that will appear as the tab name and section header",
+        "type": "The type of section to display",
+        "content": "The content text to display before the cards or main content",
+        "sections": [
+          {
+            "title": "The title of each section listed in the tab",
+            "image": "The path to the image displauyed in each subsection",
+            "content": "The text content of each subsection"
+          },...
+        ]
+      },
+      {
+        "title": "Contact",
+        "type": "contact",
+        "content": "This is a section heading before the cards",
+        "email": "sbeleidy90@gmail.com",
+        "subject": "Poly-me contact form submission"
+      }
+    ]
+  },
+  "settings": {
+    "primaryColor": "The hex value of the primary color for the app - use something close to the background image colors"
+  }
+  
+}
+```
+
+Available section types are:
+
+- content - basic content
+- card - same as content but shown as cards
+- contact - will show a contact form that uses formspree.io to send you an email
+    - `email` - the email to send the message to
+    - `subject` - the subject of the email that gets sent
+
+-->
+
+<dom-module id="poly-me-render">
+  <!--<link rel="import" type="css" href="../components-font-awesome/css/font-awesome.min.css">-->
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab" rel="stylesheet">
+  <template>
+    <style include="iron-flex iron-flex-alignment">
+      :host {
+        display: block;
+        margin: 0;
+        font-family: 'Roboto', 'Noto', sans-serif;
+        line-height: 1.5;
+        --paper-tabs-selection-bar-color: red;
+      }
+
+      .center-div {
+        padding: 30px;
+      }
+
+      .profile {
+        display: block;
+        min-width: 200px;
+        max-width: 350px;
+        text-align: center;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .profile .name {
+        font-size: 22px;
+        padding: 8px 0;
+      }
+
+      .profile .position, .profile .location {
+        font-size: 12px;
+      }
+
+      .location a {
+        text-decoration: none;
+      }
+
+      .profile-image {
+        width: 50px;
+        height: 50px;
+        border-radius: 25px;
+      }
+
+      .social-profiles a{
+        text-decoration: none;
+        color: black;
+        margin: 10px;
+      }
+
+      paper-tabs {
+        margin: 0px auto;
+        max-width: 600px;
+      }
+
+      paper-tab {
+        margin: auto;
+      }
+
+      .tabs-div, .center-div {
+        background-color: var(--primary-color, darkblue);
+      }
+
+      .center-div {
+        background-size: cover;
+        background-image: var(--bg-image);
+      }
+    </style>
+
+    <div class="center-div">
+      <!--Center content-->
+      <paper-card class="profile">
+        <div>
+          <img src$="{{data.content.profileImage}}" alt$="{{data.content.name}}" class="profile-image">
+        </div>
+        <div class="name">
+          {{data.content.name}}
+        </div>
+        <div class="position">
+          {{data.content.position}}
+        </div>
+        <div class="location">
+            <a href$="https://google.com/maps/search/{{data.content.location}}" target="blank"><i class="fa fa-map-marker"></i> {{data.content.location}}</a>
+          </div>
+        <hr>
+        <div class="social">
+          <div class="social-title">
+            {{data.content.social.title}}
+          </div>
+          <div class="social-profiles">
+            <template is="dom-repeat" items="{{data.content.social.profiles}}">
+              <a href$="{{item.link}}" target="_blank">
+                <i class$="fa fa-{{item.network}}"></i>
+              </a>
+            </template>
+          </div>
+        </div>
+      </paper-card>
+    </div>
+
+    <div class="tabs-div">
+      <paper-tabs selected="{{selected}}" scrollable>
+        <template is="dom-repeat" items="{{data.content.sections}}">
+          <paper-tab>{{item.title}}</paper-tab>
+        </template>
+      </paper-tabs>
+    </div>
+
+    <div>
+      <iron-pages selected="{{selected}}">
+        <template is="dom-repeat" items="{{data.content.sections}}" as="section">
+          <poly-me-section data="{{section}}"></poly-me-section>
+        </template>
+      </iron-pages>
+
+    </div>
+
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'poly-me-render',
+
+      properties: {
+        /**
+         * The object with the profile data
+         */
+        data: {
+          type: Object,
+          observer: '_update'
+        },
+        selected:{
+          type: String,
+          value: "0"
+        }
+      },
+
+      _update: function(newData,oldData){
+          this.customStyle['--primary-color'] = newData.settings.primaryColor == null ? 'blue' : newData.settings.primaryColor;
+          this.customStyle['--bg-image'] = "url('"+newData.content.backgroundImage + "')";
+          this.customStyle['--paper-tabs-selection-bar-color'] = newData.settings.primaryColor == null ? 'green' : newData.settings.tabBarColor;
+          this.updateStyles();
+      }
+
+    });
+  </script>
+</dom-module>

@@ -1,6 +1,6 @@
 {
   "name": "poly-me",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A web based resume using polymer",
   "repository": {
     "type": "git",
@@ -23,7 +23,8 @@
     "iron-pages": "PolymerElements/iron-pages#^1.0.7",
     "paper-tabs": "PolymerElements/paper-tabs#^1.6.2",
     "paper-input": "PolymerElements/paper-input#^1.1.14",
-    "paper-button": "PolymerElements/paper-button#^1.0.13"
+    "paper-button": "PolymerElements/paper-button#^1.0.13",
+    "iron-ajax": "^1.4.3"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
