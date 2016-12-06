@@ -38,25 +38,7 @@ The object structure should be as follows:
       ]
     },
     "sections": [
-      {
-        "title": "The section title that will appear as the tab name and section header",
-        "type": "The type of section to display",
-        "content": "The content text to display before the cards or main content",
-        "sections": [
-          {
-            "title": "The title of each section listed in the tab",
-            "image": "The path to the image displauyed in each subsection",
-            "content": "The text content of each subsection"
-          },...
-        ]
-      },
-      {
-        "title": "Contact",
-        "type": "contact",
-        "content": "This is a section heading before the cards",
-        "email": "sbeleidy90@gmail.com",
-        "subject": "Poly-me contact form submission"
-      }
+      // See each section's definition
     ]
   },
   "settings": {
@@ -66,14 +48,8 @@ The object structure should be as follows:
 }
 ```
 
-Available section types are:
-
-- content - basic content
-- card - same as content but shown as cards
-- contact - will show a contact form that uses formspree.io to send you an email
-    - `email` - the email to send the message to
-    - `subject` - the subject of the email that gets sent
-
+Section types are available as separate components with their own documentation.
+Please see each section's documentation for more information.
 -->
 
 <dom-module id="poly-me-render">

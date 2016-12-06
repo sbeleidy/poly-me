@@ -1,0 +1,96 @@
+<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../../paper-input/paper-input.html">
+<link rel="import" href="../../paper-input/paper-textarea.html">
+<link rel="import" href="../../paper-button/paper-button.html">
+
+<!--
+`contact-section`
+
+A section of poly-me that displays a contact form and submits it using [formspree.io](https://formspree.io) .
+
+Section data should be structured as follows:
+
+```
+{
+  "title": "Name to appear in tab and title of the section",
+  "type": "contact",
+  "content": "optional paragraph text to appear at the top before the subsections",
+  "email": "The email address to send messages to",
+  "subject": "The subject of the emails that will be sent"
+}
+```
+
+Usage Example:
+```
+  <contact-section data="[[data]]"></contact-section>
+```
+
+-->
+
+<dom-module id="contact-section">
+  <template>
+    <style include="iron-flex iron-flex-alignment">
+      :host {
+        display: block;
+        padding: 10px;
+        margin: 10px auto;
+        max-width: 1000px;
+        font-family: 'Roboto', 'Noto', sans-serif;
+        line-height: 1.5;
+      }
+
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Roboto Slab';
+      }
+
+      .contact {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .contact h3, .contact p {
+        text-align: center;
+      }
+
+      .contact paper-button {
+        margin: 20px auto;
+        display: block;
+        max-width: 100px;
+        text-align: center;
+      }
+
+    </style>
+
+    <div class="contact layout vertical around-justified">
+      <h3>{{data.title}}</h3>
+      <p>{{data.content}}</p>
+      <form id="contactForm" action="https://formspree.io/{{data.email}}" method="POST">
+          <paper-input type="text" name="name" label="Name"></paper-input>
+          <paper-input type="email" name="_replyto" label="Email Address"></paper-input>
+          <paper-textarea rows="5" name="message" label="Message"></paper-textarea>
+          <input type="text" name="_gotcha" style="display:none" />
+          <input type="hidden" name="_subject" value="{{data.subject}}" />
+          <paper-button on-tap="_submitContactForm" raised class="center">Send</paper-button>
+      </form>
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'contact-section',
+
+      properties: {
+        /**
+         * The section data
+         */
+        data: {
+          type: Object
+        }
+      },
+      _submitContactForm: function(){
+        this.$$("#contactForm").submit();
+      }
+    });
+  </script>
+</dom-module>
