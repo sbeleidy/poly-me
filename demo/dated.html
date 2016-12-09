@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+  <head>
+    <title>poly-me demo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+
+    <link rel="import" href="../sections/dated-section.html">
+    <link rel="import" href="../../json-box/json-box.html">
+
+    <style is="custom-style" include="demo-pages-shared-styles">
+    </style>
+
+  </head>
+  <body>
+    <div class="layout horizontal">
+      <h3>Basic Dated Section Demo</h3>
+      <demo-snippet>
+        <template is="dom-bind">
+          <dated-section data="[[data]]"></dated-section>
+          <br><br>
+          <h3>Edit the content here:</h3>
+          <json-box label="dated JSON" id="json" show-buttons current="{{data}}" max-rows="10"></json-box>
+          <script>
+            document.querySelector("#json").start = {
+              "title": "Dated Cards",
+              "type": "dated",
+              "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur.",
+              "sections": [
+                {
+                  "title": "Awesome 1",
+                  "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur.",
+                  "org": "Awesome",
+                  "orgLink": "https://awesome.com",
+                  "start": "20th Dec 2016",
+                  "end": "20th Dec 2020"
+                },
+                {
+                  "title": "Awesome 2",
+                  "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur.",
+                  "org": "Awesome",
+                  "orgLink": "https://awesome.com",
+                  "start": "20th Dec 2016",
+                  "end": "20th Dec 2020"
+                },
+                {
+                  "title": "Awesome 3",
+                  "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur.",
+                  "org": "Awesome",
+                  "orgLink": "https://awesome.com",
+                  "start": "20th Dec 2016",
+                  "end": "20th Dec 2020"
+                }
+              ],
+              "lowerContent": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur.",
+            };
+            document.querySelector("#json").reset();
+          </script>
+
+        </template>
+      </demo-snippet>
+    </div>
+
+    <div class="layout horizontal">
+      <h3>Dated with images Section Demo</h3>
+      <demo-snippet>
+        <template is="dom-bind">
+          <dated-section data="[[data2]]"></dated-section>
+          <br><br>
+          <h3>Edit the content here:</h3>
+          <json-box label="dated with Images JSON" id="json2" show-buttons current="{{data2}}" max-rows="10"></json-box>
+          <script>
+            document.querySelector("#json2").start = {
+              "title": "Dated w/ Images",
+              "type": "dated",
+              "content": "This is a section heading before the dated cards",
+              "sections": [
+                {
+                  "title": "Awesome 1",
+                  "image": "img/card-1.jpg",
+                  "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur.",
+                  "org": "Awesome",
+                  "orgLink": "https://awesome.com",
+                  "start": "20th Dec 2016",
+                  "end": "20th Dec 2020"
+                },
+                {
+                  "title": "Awesome 2",
+                  "image": "img/card-2.jpg",
+                  "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur.",
+                  "org": "Awesome",
+                  "orgLink": "https://awesome.com",
+                  "start": "20th Dec 2016",
+                  "end": "20th Dec 2020"
+                },
+                {
+                  "title": "Awesome 3",
+                  "image": "img/card-3.jpg",
+                  "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur.",
+                  "org": "Awesome",
+                  "orgLink": "https://awesome.com",
+                  "start": "20th Dec 2016",
+                  "end": "20th Dec 2020"
+                }
+              ],
+              "lowerContent": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur.",
+            };
+            document.querySelector("#json2").reset();
+          </script>
+
+        </template>
+      </demo-snippet>
+    </div>
+
+  </body>
+</html>

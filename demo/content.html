@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+  <head>
+    <title>poly-me demo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+
+    <link rel="import" href="../sections/content-section.html">
+    <link rel="import" href="../../json-box/json-box.html">
+
+    <style is="custom-style" include="demo-pages-shared-styles">
+    </style>
+
+  </head>
+  <body>
+    <div class="layout horizontal">
+      <h3>Basic content Section Demo</h3>
+      <demo-snippet>
+        <template is="dom-bind">
+          <content-section data="[[data]]"></content-section>
+          <br><br>
+          <h3>Edit the content here:</h3>
+          <json-box label="content JSON" id="json" show-buttons current="{{data}}" max-rows="10"></json-box>
+          <script>
+            document.querySelector("#json").start = {
+              "title": "Content",
+              "type": "content",
+              "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur. Nam venenatis tellus ac gravida cursus. Mauris volutpat condimentum finibus. Nullam efficitur tempor felis eget varius.",
+              "sections": [
+                {
+                  "title": "Awesome 1",
+                  "image": "img/background.jpeg",
+                  "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur."
+                },
+                {
+                  "title": "Awesome 2",
+                  "image": "img/background.jpeg",
+                  "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur."
+                },
+                {
+                  "title": "Awesome 3",
+                  "image": "img/background.jpeg",
+                  "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur."
+                }
+              ]
+            };
+            document.querySelector("#json").reset();
+          </script>
+
+        </template>
+      </demo-snippet>
+    </div>
+  </body>
+</html>
