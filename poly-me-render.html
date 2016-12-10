@@ -193,10 +193,18 @@ Please see each section's documentation for more information.
       },
 
       _update: function(newData,oldData){
+        try{
           this.customStyle['--primary-color'] = newData.settings.primaryColor == null ? 'blue' : newData.settings.primaryColor;
           this.customStyle['--bg-image'] = "url('"+newData.content.backgroundImage + "')";
           this.customStyle['--paper-tabs-selection-bar-color'] = newData.settings.primaryColor == null ? 'green' : newData.settings.tabBarColor;
           this.updateStyles();
+        }catch (e){
+          console.log(e);
+          this.customStyle['--primary-color'] = 'blue';
+          this.customStyle['--paper-tabs-selection-bar-color'] = 'green';
+          this.updateStyles();
+
+        }
       }
 
     });
