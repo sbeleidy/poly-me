@@ -1,4 +1,5 @@
 <link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../../iron-flex-layout/iron-flex-layout-classes.html">
 
 
 <!--
@@ -8,7 +9,7 @@ A section of poly-me that displays basic content.
 
 Section data should be structured as follows:
 
-```
+```json
 {
   "title": "Name to appear in tab",
   "type": "content",
@@ -29,12 +30,11 @@ Section data should be structured as follows:
 ```
 
 Usage Example:
-```
+```html
   <content-section data="[[data]]"></content-section>
 ```
 
-
-
+@demo demo/content.html 
 -->
 
 <dom-module id="content-section">

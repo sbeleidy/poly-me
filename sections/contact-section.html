@@ -1,9 +1,10 @@
 <link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../../iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="../../paper-input/paper-input.html">
 <link rel="import" href="../../paper-input/paper-textarea.html">
 <link rel="import" href="../../paper-button/paper-button.html">
 
-<!--
+<!--json
 `contact-section`
 
 A section of poly-me that displays a contact form and submits it using [formspree.io](https://formspree.io) .
@@ -21,10 +22,11 @@ Section data should be structured as follows:
 ```
 
 Usage Example:
-```
+```html
   <contact-section data="[[data]]"></contact-section>
 ```
 
+@demo demo/contact.html 
 -->
 
 <dom-module id="contact-section">

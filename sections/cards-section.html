@@ -1,5 +1,7 @@
 <link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../../iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="../../paper-button/paper-button.html">
+<link rel="import" href="../../paper-card/paper-card.html">
 
 
 <!--
@@ -9,7 +11,7 @@ A section of poly-me that displays some cards.
 
 Section data should be structured as follows:
 
-```
+```json
 {
   "title": "Name to appear in tab",
   "type": "cards",
@@ -32,12 +34,11 @@ Section data should be structured as follows:
 ```
 
 Usage Example:
-```
+```html
   <cards-section data="[[data]]"></cards-section>
 ```
 
-
-
+@demo demo/cards.html 
 -->
 
 <dom-module id="cards-section">

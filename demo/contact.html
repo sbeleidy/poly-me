@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+  <head>
+    <title>poly-me demo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+
+    <link rel="import" href="../sections/contact-section.html">
+    <link rel="import" href="../../json-box/json-box.html">
+
+    <style is="custom-style" include="demo-pages-shared-styles">
+    </style>
+
+  </head>
+  <body>
+    <div class="layout horizontal">
+      <h3>Basic contact Section Demo</h3>
+      <demo-snippet>
+        <template is="dom-bind">
+          <contact-section data="[[data]]"></contact-section>
+          <br><br>
+          <h3>Edit the content here:</h3>
+          <json-box label="Contact JSON" id="json" show-buttons current="{{data}}" max-rows="10"></json-box>
+          <script>
+            document.querySelector("#json").start = {
+              "title": "Contact",
+              "type": "contact",
+              "content": "This is a section heading before the cards",
+              "email": "john@gmail.com",
+              "subject": "Poly-me contact form submission"
+            };
+            document.querySelector("#json").reset();
+          </script>
+
+        </template>
+      </demo-snippet>
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,171 @@
+<!doctype html>
+<html>
+  <head>
+    <title>poly-me demo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+
+    <link rel="import" href="../poly-me-render.html">
+    <link rel="import" href="../../json-box/json-box.html">
+
+  </head>
+  <body>
+
+    <div class="layout horizontal">
+      <h3>Poly-me-render Demo</h3>
+      <demo-snippet>
+        <template is="dom-bind">
+          <poly-me-render data="[[data]]"></poly-me-render>
+          <br><br>
+          <h3>Edit the content here:</h3>
+          <json-box label="dated JSON" id="json" show-buttons current="{{data}}" max-rows="10"></json-box>
+          <script>
+            document.querySelector("#json").start = {
+              "content": {
+                "name": "John Smith",
+                "profileImage": "img/profile.jpg",
+                "backgroundImage": "img/background.jpeg",
+                "position": "Awesome",
+                "location": "San Francisco, CA",
+                "social": {
+                  "title": "",
+                  "profiles": [
+                    {
+                      "network": "twitter",
+                      "link": "https://twitter.com/john"
+                    },
+                    {
+                      "network": "github",
+                      "link": "https://github.com/john"
+                    },
+                    {
+                      "network": "linkedin",
+                      "link": "https://linkedin.com/in/john"
+                    }
+                  ]
+                },
+                "sections": [
+                  {
+                    "title": "Content",
+                    "type": "content",
+                    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur. Nam venenatis tellus ac gravida cursus. Mauris volutpat condimentum finibus. Nullam efficitur tempor felis eget varius.",
+                    "sections": [
+                      {
+                        "title": "Awesome 1",
+                        "image": "img/background.jpeg",
+                        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur."
+                      },
+                      {
+                        "title": "Awesome 2",
+                        "image": "img/background.jpeg",
+                        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur."
+                      },
+                      {
+                        "title": "Awesome 3",
+                        "image": "img/background.jpeg",
+                        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur."
+                      }
+                    ]
+                  },
+                  {
+                    "title": "Cards",
+                    "type": "cards",
+                    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur.",
+                    "sections": [
+                      {
+                        "title": "Awesome 1",
+                        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur.",
+                        "link": "https://awesome.com"
+                      },
+                      {
+                        "title": "Awesome 2",
+                        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur."
+                      },
+                      {
+                        "title": "Awesome 3",
+                        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur."
+                      }
+                    ]
+                  },
+                  {
+                    "title": "Cards w/ Images",
+                    "type": "cards",
+                    "content": "This is a section heading before the cards",
+                    "sections": [
+                      {
+                        "title": "Awesome 1",
+                        "image": "img/card-1.jpg",
+                        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur.",
+                        "link": "https://awesome.com",
+                        "linkButton": "Go!"
+                      },
+                      {
+                        "title": "Awesome 2",
+                        "image": "img/card-2.jpg",
+                        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur."
+                      },
+                      {
+                        "title": "Awesome 3",
+                        "image": "img/card-3.jpg",
+                        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur."
+                      }
+                    ]
+                  },
+                  {
+                    "title": "Dated Cards",
+                    "type": "dated",
+                    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur.",
+                    "sections": [
+                      {
+                        "title": "Awesome 1",
+                        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur.",
+                        "org": "Awesome",
+                        "orgLink": "https://awesome.com",
+                        "start": "20th Dec 2016",
+                        "end": "20th Dec 2020"
+                      },
+                      {
+                        "title": "Awesome 2",
+                        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur.",
+                        "org": "Awesome",
+                        "orgLink": "https://awesome.com",
+                        "start": "20th Dec 2016",
+                        "end": "20th Dec 2020"
+                      },
+                      {
+                        "title": "Awesome 3",
+                        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur.",
+                        "org": "Awesome",
+                        "orgLink": "https://awesome.com",
+                        "start": "20th Dec 2016",
+                        "end": "20th Dec 2020"
+                      }
+                    ]
+                  },
+                  {
+                    "title": "Contact",
+                    "type": "contact",
+                    "content": "This is a section heading before the cards",
+                    "email": "sbeleidy90@gmail.com",
+                    "subject": "Poly-me contact form submission"
+                  }
+                ]
+              },
+              "settings": {
+                "primaryColor": "#B2BABF"
+              }
+              
+            };
+            document.querySelector("#json").reset();
+          </script>
+
+        </template>
+      </demo-snippet>
+    </div>
+
+  </body>
+</html>
