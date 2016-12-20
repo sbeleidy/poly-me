@@ -1,0 +1,74 @@
+<link rel="import" href="../../polymer/polymer.html">
+
+
+<!--
+`google-form-section`
+
+A section of poly-me that displays a google form. Note: Make sure the link url ends with a "/viewform" as shown in the example below.
+
+Section data should be structured as follows:
+
+```json
+{
+  "title": "Name to appear in tab",
+  "type": "googleForm",
+  "link": "https://docs.google.com/forms/d/e/1FAIpQLScRdspVcg_wUAGO5aOGlKTAnpNJ8PLnHI72mGgVczfDeatAAg/viewform"
+}
+```
+
+Usage Example:
+```html
+  <google-form-section data="[[data]]"></google-form-section>
+```
+
+@demo demo/google-form.html 
+-->
+
+<dom-module id="google-form-section">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+
+      .form-container {
+        position: relative;
+        padding-bottom: 56.25%;
+        padding-top: 35px;
+        height: 0;
+        overflow: hidden;
+      }
+
+      .form-container iframe {
+        position: absolute;
+        top:0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+    </style>
+
+    <div class="form-container">
+      <iframe src$="[[data.link]]?embedded=true" width="760" height="500" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
+    </div>
+    
+
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'google-form-section',
+
+      properties: {
+        /**
+         * The section data
+         */
+        data: {
+          type: Object
+        }
+      }
+    });
+  </script>
+</dom-module>
