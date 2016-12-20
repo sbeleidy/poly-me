@@ -4,6 +4,7 @@
 <link rel="import" href="sections/content-section.html">
 <link rel="import" href="sections/contact-section.html">
 <link rel="import" href="sections/dated-section.html">
+<link rel="import" href="sections/google-form-section.html">
 
 <!--
 `poly-me-section`
@@ -33,6 +34,10 @@ Example:
 
     <template is="dom-if" if="{{_checkEquals(data.type, 'contact')}}">
       <contact-section data="[[data]]"></contact-section>
+    </template>
+
+    <template is="dom-if" if="{{_checkEquals(data.type, 'googleForm')}}">
+      <google-form-section data="[[data]]"></google-form-section>
     </template>
 
   </template>

@@ -126,6 +126,11 @@
         "content": "This is a section heading before the cards",
         "email": "sbeleidy90@gmail.com",
         "subject": "Poly-me contact form submission"
+      },
+      {
+        "title": "Google Form",
+        "type": "googleForm",
+        "link": "https://docs.google.com/forms/d/e/1FAIpQLScRdspVcg_wUAGO5aOGlKTAnpNJ8PLnHI72mGgVczfDeatAAg/viewform"
       }
     ]
   },
