@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+  <head>
+    <title>poly-me demo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+
+    <link rel="import" href="../sections/jupyter-notebooks-section.html">
+    <link rel="import" href="../../json-box/json-box.html">
+
+    <style is="custom-style" include="demo-pages-shared-styles">
+    </style>
+
+  </head>
+  <body>
+    <div class="layout horizontal">
+      <h3>Basic Jupyter Notebook Section Demo</h3>
+      <demo-snippet>
+        <template is="dom-bind">
+          <jupyter-notebooks-section data="[[data]]"></jupyter-notebooks-section>
+          <br><br>
+          <h3>Edit the content here:</h3>
+          <json-box label="Jupyter Notebooks JSON" id="json" show-buttons current="{{data}}" max-rows="10"></json-box>
+          <script>
+            document.querySelector("#json").start = {
+              "title": "Name to appear in tab",
+              "type": "jupyterNotebooks",
+              "onlyOne": true,
+              "link": "https://raw.githubusercontent.com/ehmatthes/intro_programming/master/notebooks/index.ipynb"
+            };
+            document.querySelector("#json").reset();
+          </script>
+
+        </template>
+      </demo-snippet>
+    </div>
+
+    <div class="layout horizontal">
+      <h3>Multiple Jupyter Notebooks Section Demo</h3>
+      <demo-snippet>
+        <template is="dom-bind">
+          <jupyter-notebooks-section data="[[data2]]"></jupyter-notebooks-section>
+          <br><br>
+          <h3>Edit the content here:</h3>
+          <json-box label="Jupyter Notebooks JSON" id="json2" show-buttons current="{{data2}}" max-rows="10"></json-box>
+          <script>
+            document.querySelector("#json2").start = {
+              "title": "Name to appear in tab",
+              "type": "jupyterNotebooks",
+              "onlyOne": false,
+              "links": [
+                {
+                  "name": "Introduction To Python",
+                  "link": "https://raw.githubusercontent.com/ehmatthes/intro_programming/master/notebooks/index.ipynb"
+                },
+                {
+                  "name": "Python For Developers",
+                  "link": "https://raw.githubusercontent.com/ricardoduarte/python-for-developers/master/Chapter1/Chapter1_Introduction.ipynb"
+                }
+              ]
+            };
+            document.querySelector("#json2").reset();
+          </script>
+
+        </template>
+      </demo-snippet>
+    </div>
+
+  </body>
+</html>

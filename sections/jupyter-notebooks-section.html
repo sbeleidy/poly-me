@@ -1,0 +1,107 @@
+<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../../jupyter-notebook/jupyter-notebook.html">
+<link rel="import" href="../../iron-pages/iron-pages.html">
+
+
+<!--
+`jupyter-notebooks-section`
+
+A section of poly-me that displays a google form. Note: Make sure the link url ends with a "/viewform" as shown in the example below.
+
+Section data should be structured as follows for one notebook:
+
+```json
+{
+  "title": "Name to appear in tab",
+  "type": "jupyterNotebooks",
+  "onlyOne": true,
+  "link": "raw link to notebook"
+}
+```
+
+OR as follows for multiple notebooks:
+
+```json
+{
+  "title": "Name to appear in tab",
+  "type": "jupyterNotebooks",
+  "onlyOne": false,
+  "links": [
+    {
+      "name": "Name of notebook",
+      "link": "raw link to notebook"
+    },
+    {
+      "name": "Name of notebook",
+      "link": "raw link to notebook"
+    },
+    ...
+  ]
+}
+```
+
+Usage Example:
+```html
+  <jupyter-notebooks-section data="[[data]]"></jupyter-notebooks-section>
+```
+
+@demo demo/jupyter-notebooks.html 
+-->
+
+<dom-module id="jupyter-notebooks-section">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+
+    </style>
+
+    <!-- One Notebook -->
+    <template is="dom-if" if="{{data.onlyOne}}">
+      <jupyter-notebook src="{{data.link}}"></jupyter-notebook>
+    </template>
+
+    <!-- Multiple Notebooks -->
+    <template is="dom-if" if="{{!data.onlyOne}}">
+      <div>
+        <template is="dom-repeat" items="[[data.links]]">
+          <div>
+            <span on-tap="_select" index="[[index]]">[[item.name]]</span>
+          </div>
+        </template>
+      </div>
+      <div>
+        <iron-pages selected="[[selected]]">
+          <template is="dom-repeat" items="[[data.links]]" >
+            <jupyter-notebook name="[[item.name]]" src="{{item.link}}"></jupyter-notebook>
+          </template>
+        </iron-pages>
+      </div>
+    </template>
+
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'jupyter-notebooks-section',
+
+      properties: {
+        /**
+         * The section data
+         */
+        data: {
+          type: Object
+        },
+        selected: {
+          type: Number,
+          value: 0
+        }
+      },
+      _select: function(e){
+        this.selected = e.target.index;
+      }
+    });
+  </script>
+</dom-module>
