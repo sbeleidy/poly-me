@@ -1,6 +1,8 @@
 <link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../../iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="../../jupyter-notebook/jupyter-notebook.html">
 <link rel="import" href="../../iron-pages/iron-pages.html">
+<link rel="import" href="../../paper-card/paper-card.html">
 
 
 <!--
@@ -29,11 +31,13 @@ OR as follows for multiple notebooks:
   "links": [
     {
       "name": "Name of notebook",
-      "link": "raw link to notebook"
+      "link": "raw link to notebook",
+      "description": "An optional short description for the notebook"
     },
     {
       "name": "Name of notebook",
-      "link": "raw link to notebook"
+      "link": "raw link to notebook",
+      "description": "An optional short description for the notebook"
     },
     ...
   ]
@@ -50,28 +54,46 @@ Usage Example:
 
 <dom-module id="jupyter-notebooks-section">
   <template>
-    <style>
+    <style include="iron-flex iron-flex-alignment">
       :host {
         display: block;
+      }
+
+      paper-card {
+        padding: 15px;
+        margin: 5px;
+        cursor: pointer;
+      }
+
+      .notebook-cards {
+        margin-top: 20px;
+      }
+
+      .notebook-section {
+        margin: 20px;
       }
 
     </style>
 
     <!-- One Notebook -->
     <template is="dom-if" if="{{data.onlyOne}}">
-      <jupyter-notebook src="{{data.link}}"></jupyter-notebook>
+      <div class="notebook-section">
+        <jupyter-notebook src="{{data.link}}"></jupyter-notebook>
+      </div>
     </template>
 
     <!-- Multiple Notebooks -->
     <template is="dom-if" if="{{!data.onlyOne}}">
-      <div>
+      <div class="layout horizontal wrap center-justified notebook-cards">
         <template is="dom-repeat" items="[[data.links]]">
-          <div>
+          <paper-card on-tap="_select" index="[[index]]">
             <span on-tap="_select" index="[[index]]">[[item.name]]</span>
-          </div>
+            <br>
+            <small on-tap="_select" index="[[index]]">[[item.description]]</small>
+          </paper-card>
         </template>
       </div>
-      <div>
+      <div class="notebook-section">
         <iron-pages selected="[[selected]]">
           <template is="dom-repeat" items="[[data.links]]" >
             <jupyter-notebook name="[[item.name]]" src="{{item.link}}"></jupyter-notebook>

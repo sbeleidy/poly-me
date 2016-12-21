@@ -41,7 +41,7 @@ Example:
       <google-form-section data="[[data]]"></google-form-section>
     </template>
 
-    <template is="dom-if" if="{{_checkEquals(data.type, 'jupyterNotebook')}}">
+    <template is="dom-if" if="{{_checkEquals(data.type, 'jupyterNotebooks')}}">
       <jupyter-notebooks-section data="[[data]]"></jupyter-notebooks-section>
     </template>
 
