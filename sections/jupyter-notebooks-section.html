@@ -1,0 +1,129 @@
+<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../../iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../../jupyter-notebook/jupyter-notebook.html">
+<link rel="import" href="../../iron-pages/iron-pages.html">
+<link rel="import" href="../../paper-card/paper-card.html">
+
+
+<!--
+`jupyter-notebooks-section`
+
+A section of poly-me that displays a google form. Note: Make sure the link url ends with a "/viewform" as shown in the example below.
+
+Section data should be structured as follows for one notebook:
+
+```json
+{
+  "title": "Name to appear in tab",
+  "type": "jupyterNotebooks",
+  "onlyOne": true,
+  "link": "raw link to notebook"
+}
+```
+
+OR as follows for multiple notebooks:
+
+```json
+{
+  "title": "Name to appear in tab",
+  "type": "jupyterNotebooks",
+  "onlyOne": false,
+  "links": [
+    {
+      "name": "Name of notebook",
+      "link": "raw link to notebook",
+      "description": "An optional short description for the notebook"
+    },
+    {
+      "name": "Name of notebook",
+      "link": "raw link to notebook",
+      "description": "An optional short description for the notebook"
+    },
+    ...
+  ]
+}
+```
+
+Usage Example:
+```html
+  <jupyter-notebooks-section data="[[data]]"></jupyter-notebooks-section>
+```
+
+@demo demo/jupyter-notebooks.html 
+-->
+
+<dom-module id="jupyter-notebooks-section">
+  <template>
+    <style include="iron-flex iron-flex-alignment">
+      :host {
+        display: block;
+      }
+
+      paper-card {
+        padding: 15px;
+        margin: 5px;
+        cursor: pointer;
+      }
+
+      .notebook-cards {
+        margin-top: 20px;
+      }
+
+      .notebook-section {
+        margin: 20px;
+      }
+
+    </style>
+
+    <!-- One Notebook -->
+    <template is="dom-if" if="{{data.onlyOne}}">
+      <div class="notebook-section">
+        <jupyter-notebook src="{{data.link}}"></jupyter-notebook>
+      </div>
+    </template>
+
+    <!-- Multiple Notebooks -->
+    <template is="dom-if" if="{{!data.onlyOne}}">
+      <div class="layout horizontal wrap center-justified notebook-cards">
+        <template is="dom-repeat" items="[[data.links]]">
+          <paper-card on-tap="_select" index="[[index]]">
+            <span on-tap="_select" index="[[index]]">[[item.name]]</span>
+            <br>
+            <small on-tap="_select" index="[[index]]">[[item.description]]</small>
+          </paper-card>
+        </template>
+      </div>
+      <div class="notebook-section">
+        <iron-pages selected="[[selected]]">
+          <template is="dom-repeat" items="[[data.links]]" >
+            <jupyter-notebook name="[[item.name]]" src="{{item.link}}"></jupyter-notebook>
+          </template>
+        </iron-pages>
+      </div>
+    </template>
+
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'jupyter-notebooks-section',
+
+      properties: {
+        /**
+         * The section data
+         */
+        data: {
+          type: Object
+        },
+        selected: {
+          type: Number,
+          value: 0
+        }
+      },
+      _select: function(e){
+        this.selected = e.target.index;
+      }
+    });
+  </script>
+</dom-module>
