@@ -1,0 +1,108 @@
+<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../../iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../../paper-button/paper-button.html">
+<link rel="import" href="../../paper-toggle-button/paper-toggle-button.html">
+<link rel="import" href="../../paper-input/paper-input.html">
+<link rel="import" href="../../paper-input/paper-textarea.html">
+<link rel="import" href="../../file-fire/file-fire.html">
+<link rel="import" href="../../json-box/json-box.html">
+
+
+<!--
+`cards-section-editor`
+
+A form editor for a poly-me cards-section.
+
+Usage Example:
+```html
+  <cards-section-editor data="{{data}}"></cards-section-editor>
+```
+
+@demo demo/cards-editor.html 
+-->
+
+<dom-module id="cards-section-editor">
+  <template>
+    <style include="iron-flex iron-flex-alignment">
+      :host {
+        display: block;
+      }
+      .section {
+        padding: 5px;
+        margin: 10px;
+      }
+    </style>
+    
+    <paper-input label="Title" value="{{data.title}}"></paper-input>
+    <paper-textarea label="Content" value="{{data.content}}"></paper-textarea>
+    <h3>Cards</h3>
+    <template is="dom-repeat" items="{{data.sections}}">
+      <div class="section">
+        <paper-input label="Title" value="{{item.title}}"></paper-input>
+        <paper-textarea label="Content" value="{{item.content}}"></paper-textarea>
+        <paper-input label="Image Url" value="{{item.image}}"></paper-input>
+        <paper-input label="Link" value="{{item.link}}"></paper-input>
+        <paper-input label="Link Button Text" value="{{item.linkButton}}"></paper-input>
+        <paper-button index="[[index]]" on-tap="_removeSection">Remove Card</paper-button>
+      </div>
+    </template>
+    <paper-button on-tap="_addSection">Add Card</paper-button>
+    <paper-textarea label="Lower Content" value="{{data.lowerContent}}"></paper-textarea>
+
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'cards-section-editor',
+
+      properties: {
+        /**
+         * The section data
+         */
+        data: {
+          type: Object,
+          notify: true,
+          value: function(){
+            return {"sections": [{
+              "title": "",
+              "content": "",
+              "image": "",
+              "link": "",
+              "linkButton": "View"
+            }]}
+          }
+        },
+        isAdvanced: {
+          type: Boolean,
+          value: false
+        },
+        appName: String,
+        fileDir: String
+      },
+      _addSection: function(e){
+        if(Object.keys(this.data).length === 0 && this.data.constructor === Object){
+          console.log(this.data)
+          this.data = {"sections": [{
+              "title": "",
+              "content": "",
+              "image": "",
+              "link": "",
+              "linkButton": "View"
+            }]}
+        } else {
+          this.push("data.sections", {
+            "title": "",
+            "content": "",
+            "image": "",
+            "link": "",
+            "linkButton": "View"
+          });
+        }
+      },
+      _removeSection: function(e){
+          this.splice("data.sections", e.target.index, 1);
+      }
+    });
+  </script>
+</dom-module>

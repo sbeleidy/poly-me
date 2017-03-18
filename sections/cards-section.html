@@ -72,13 +72,23 @@ Usage Example:
         text-decoration: none;
       }
 
+      .card-image {
+        margin: auto;
+        max-width: 100%;
+      }
+
     </style>
 
 
     <p>{{data.content}}</p>      
     <div class="cards subsections layout horizontal wrap around-justified">
       <template is="dom-repeat" items="{{data.sections}}" as="subdata">
-        <paper-card class="sub flex" image="{{subdata.image}}">
+        <paper-card class="sub flex">
+          
+          <template is="dom-if" if="[[_isSet(subdata.image)]]" >
+            <img class="card-image" src="[[subdata.image]]" alt="[[subdata.title]]">
+          </template>
+          
           <h3>{{subdata.title}}</h3>
           <!--<img src$="{{subdata.image}}" alt$="{{subdata.title}}">-->
           <p>{{subdata.content}}</p>
@@ -114,7 +124,7 @@ Usage Example:
         }
       },
       _isSet: function(a){
-        return a != null && typeof a !== 'undefined';
+        return !(a == null || typeof a === 'undefined' || a == "");
       },
     });
   </script>

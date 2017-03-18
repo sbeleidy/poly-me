@@ -10,7 +10,9 @@
     <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
 
     <link rel="import" href="../sections/cards-section.html">
+    <link rel="import" href="../editors/cards-section-editor.html">
     <link rel="import" href="../../json-box/json-box.html">
+    <link rel="import" href="../../polymerfire/firebase-app.html">
 
     <style is="custom-style" include="demo-pages-shared-styles">
     </style>
@@ -93,6 +95,24 @@
             document.querySelector("#json2").reset();
           </script>
 
+        </template>
+      </demo-snippet>
+    </div>
+
+    <div class="layout horizontal">
+      <h3>Cards with Editor Section Demo</h3>
+      <demo-snippet>
+        <template is="dom-bind">
+          <firebase-app
+            name="demo"
+            api-key="AIzaSyB6YRxoa_KZvHcbzBtLaMdRqT4QWBMUP00"
+            auth-domain="poly-me-test.firebaseapp.com"
+            database-url="https://poly-me-test.firebaseio.com"
+            storage-bucket="poly-me-test.appspot.com"
+            >
+        </firebase-app>
+          <cards-section-editor data="{{data}}" app-name="demo" file-dir="/images/"></cards-section-editor>
+          <cards-section data="[[data]]"></cards-section>
         </template>
       </demo-snippet>
     </div>

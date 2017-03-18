@@ -1,0 +1,53 @@
+<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="editors/cards-section-editor.html">
+
+
+<!--
+`poly-me-editor`
+
+A form editor for a poly-me.
+
+Usage Example:
+```html
+  <poly-me-editor data="{{data}}"></poly-me-editor>
+```
+
+@demo demo/index.html 
+-->
+
+<dom-module id="poly-me-editor">
+  <template>
+    <style include="iron-flex iron-flex-alignment">
+      :host {
+        display: block;
+      }
+    </style>
+
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'poly-me-editor',
+
+      properties: {
+        /**
+         * The section data
+         */
+        data: {
+          type: Object,
+          notify: true
+        }
+      },
+      _addSection: function(e){
+        this.data.sections.append({
+          "title": " ",
+          "content": " ",
+          "image": " ",
+          "link": " ",
+          "linkButton": "View"
+        })
+      }
+    });
+  </script>
+</dom-module>

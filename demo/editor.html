@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+  <head>
+    <title>poly-me demo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+
+    <link rel="import" href="../poly-me-editor.html">
+    <link rel="import" href="../../json-box/json-box.html">
+
+    <style is="custom-style" include="demo-pages-shared-styles">
+    </style>
+
+  </head>
+  <body>
+
+    <div class="layout horizontal">
+      <h3>Poly-me editor</h3>
+      <demo-snippet>
+        <template is="dom-bind">
+          <poly-me-editor data="[[data2]]"></poly-me-editor>
+          <json-box label="Cards with Images JSON" id="json2" show-buttons current="{{data2}}" max-rows="10"></json-box>
+        </template>
+      </demo-snippet>
+    </div>
+
+  </body>
+</html>
