@@ -1,0 +1,101 @@
+<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../../iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../../paper-button/paper-button.html">
+<link rel="import" href="../../paper-toggle-button/paper-toggle-button.html">
+<link rel="import" href="../../paper-input/paper-input.html">
+<link rel="import" href="../../paper-input/paper-textarea.html">
+<link rel="import" href="../../file-fire/file-fire.html">
+<link rel="import" href="../../json-box/json-box.html">
+
+
+<!--
+`contact-section-editor`
+
+A form editor for a poly-me contact-section.
+
+Usage Example:
+```html
+  <contact-section-editor data="{{data}}"></contact-section-editor>
+```
+
+@demo demo/cards.html 
+-->
+
+<dom-module id="contact-section-editor">
+  <template>
+    <style include="iron-flex iron-flex-alignment">
+      :host {
+        display: block;
+      }
+      .section {
+        padding: 10px;
+        margin: 20px;
+        min-width: 250px;
+        max-width: 300px;
+        /*border: 1px solid lightgray;
+        border-radius: 3px;*/
+      }
+    </style>
+    
+    <paper-input label="Title" value="{{data.title}}"></paper-input>
+    <paper-textarea label="Content" value="{{data.content}}"></paper-textarea>
+    <paper-textarea label="Email" type="email" value="{{data.email}}"></paper-textarea>
+    <paper-textarea label="Subject of emails" value="{{data.subject}}"></paper-textarea>
+
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'contact-section-editor',
+
+      properties: {
+        /**
+         * The section data
+         */
+        data: {
+          type: Object,
+          notify: true,
+          value: function(){
+            return {"sections": [{
+              "title": "",
+              "content": "",
+              "image": "",
+              "link": "",
+              "linkButton": "View"
+            }]}
+          }
+        },
+        isAdvanced: {
+          type: Boolean,
+          value: false
+        },
+        appName: String,
+        fileDir: String
+      },
+      _addSection: function(e){
+        if(Object.keys(this.data).length === 0 && this.data.constructor === Object){
+          console.log(this.data)
+          this.data = {"sections": [{
+              "title": "",
+              "content": "",
+              "image": "",
+              "link": "",
+              "linkButton": "View"
+            }]}
+        } else {
+          this.push("data.sections", {
+            "title": "",
+            "content": "",
+            "image": "",
+            "link": "",
+            "linkButton": "View"
+          });
+        }
+      },
+      _removeSection: function(e){
+          this.splice("data.sections", e.target.index, 1);
+      }
+    });
+  </script>
+</dom-module>
