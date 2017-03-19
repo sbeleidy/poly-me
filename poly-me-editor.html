@@ -1,5 +1,10 @@
-<link rel="import" href="../../polymer/polymer.html">
-<link rel="import" href="editors/cards-section-editor.html">
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-menu-button/paper-menu-button.html">
+<link rel="import" href="../paper-item/paper-item.html">
+<link rel="import" href="../paper-menu/paper-menu.html">
+<link rel="import" href="../paper-tabs/paper-tabs.html">
+<link rel="import" href="../iron-pages/iron-pages.html">
+<link rel="import" href="poly-me-section-editor.html">
 
 
 <!--
@@ -12,7 +17,7 @@ Usage Example:
   <poly-me-editor data="{{data}}"></poly-me-editor>
 ```
 
-@demo demo/index.html 
+@demo demo/editor.html 
 -->
 
 <dom-module id="poly-me-editor">
@@ -20,8 +25,60 @@ Usage Example:
     <style include="iron-flex iron-flex-alignment">
       :host {
         display: block;
+        padding: 10px;
+      }
+
+      .dropdown-content {
+        z-index: 1000;
+      }
+
+      paper-menu paper-item {
+        cursor: pointer;
       }
     </style>
+
+
+    <paper-input label="Name" value="{{data.content.name}}"></paper-input>
+    <paper-input label="Profile Picture" value="{{data.content.profileImage}}" type="url" ></paper-input>
+    <paper-input label="Background Picture" value="{{data.content.backgroundImage}}" type="url"></paper-input>
+    <paper-input label="Position" value="{{data.content.position}}"></paper-input>
+    <paper-input label="Location" value="{{data.content.location}}"></paper-input>
+    <!-- Social sections -->
+
+    <!-- Tabs -->
+
+    <!-- Tab Editors-->
+    <paper-menu-button elevation="3">
+      <paper-button raised class="dropdown-trigger">Add section</paper-button>
+      <paper-menu class="dropdown-content">
+        <paper-item name="content" on-tap="_addSection">Content</paper-item>
+        <paper-item name="cards" on-tap="_addSection">Cards</paper-item>
+        <paper-item name="dated" on-tap="_addSection">Dated</paper-item>
+        <paper-item name="contact" on-tap="_addSection">Contact</paper-item>
+        <paper-item name="googleForm" on-tap="_addSection">Google Form</paper-item>
+        <paper-item name="jupyterNotebooks" on-tap="_addSection">Jupyter Notebooks</paper-item>
+      </paper-menu>
+    </paper-menu-button>
+    <div class="tabs-div">
+      <paper-tabs selected="{{selected}}" scrollable>
+        <template is="dom-repeat" items="{{data.content.sections}}">
+          <paper-tab>{{item.title}}</paper-tab>
+        </template>
+      </paper-tabs>
+    </div>
+    <div>
+      <iron-pages selected="{{selected}}">
+        <template is="dom-repeat" items="{{data.content.sections}}" as="section" index-as=tabNumb>
+          <div>
+            <!--Change order-->
+            <paper-button raised data-index$="[[tabNumb]]" data-dir="0" on-tap="_move">Move Left</paper-button>
+            <paper-button raised data-index$="[[tabNumb]]" data-dir="1" on-tap="_move">Move Right</paper-button>
+            <paper-button raised data-index$="[[tabNumb]]" on-tap="_del">Delete Section</paper-button>
+            <poly-me-section-editor data="{{section}}"></poly-me-section-editor>
+          </div>
+        </template>
+      </iron-pages>
+    </div>
 
   </template>
 
@@ -32,21 +89,124 @@ Usage Example:
 
       properties: {
         /**
-         * The section data
+         * The poly-me data
          */
         data: {
           type: Object,
-          notify: true
+          notify: true,
+          value: ()=>{
+            return {
+              content: {sections:[]},
+              settings: {}
+            }
+          }
         }
       },
       _addSection: function(e){
-        this.data.sections.append({
-          "title": " ",
-          "content": " ",
-          "image": " ",
-          "link": " ",
-          "linkButton": "View"
-        })
+        var newSection;
+        sectionType = e.target.getAttribute("name")
+        if (sectionType == "cards"){
+          newSection = {
+            "title": "Cards",
+            "type": "cards",
+            "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur. Nam venenatis tellus ac gravida cursus. Mauris volutpat condimentum finibus. Nullam efficitur tempor felis eget varius.",
+            "sections": [
+              {
+                "title": "Awesome 1",
+                "image": "img/background.jpeg",
+                "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur."
+              }
+            ],
+            "lowerContent": "This is the end of the section."
+          }
+        } else if(sectionType == "content"){
+          newSection = {
+            "title": "Content",
+            "type": "content",
+            "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur. Nam venenatis tellus ac gravida cursus. Mauris volutpat condimentum finibus. Nullam efficitur tempor felis eget varius.",
+            "sections": [
+              {
+                "title": "Awesome 1",
+                "image": "img/background.jpeg",
+                "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur."
+              }
+            ],
+            "lowerContent": "This is the end of the section."
+          }
+        } else if(sectionType == "dated"){
+          newSection = {
+            "title": "Dated",
+            "type": "dated",
+            "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur. Nam venenatis tellus ac gravida cursus. Mauris volutpat condimentum finibus. Nullam efficitur tempor felis eget varius.",
+            "sections": [
+              {
+                "title": "Awesome 1",
+                "image": "img/background.jpeg",
+                "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur."
+              }
+            ],
+            "lowerContent": "This is the end of the section."
+          }
+        } else if(sectionType == "contact"){
+          newSection = {
+            "title": "Contact",
+            "type": "contact",
+            "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur. Nam venenatis tellus ac gravida cursus. Mauris volutpat condimentum finibus. Nullam efficitur tempor felis eget varius.",
+            "sections": [
+              {
+                "title": "Awesome 1",
+                "image": "img/background.jpeg",
+                "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur."
+              }
+            ],
+            "lowerContent": "This is the end of the section."
+          }
+        } else if(sectionType == "googleForm"){
+          newSection = {
+            "title": "Form",
+            "type": "googleForm",
+            "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur. Nam venenatis tellus ac gravida cursus. Mauris volutpat condimentum finibus. Nullam efficitur tempor felis eget varius.",
+            "sections": [
+              {
+                "title": "Awesome 1",
+                "image": "img/background.jpeg",
+                "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur."
+              }
+            ],
+            "lowerContent": "This is the end of the section."
+          }
+        } else if(sectionType == "jupyterNotebooks"){
+          newSection = {
+            "title": "Notebooks",
+            "type": "jupyterNotebooks",
+            "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur. Nam venenatis tellus ac gravida cursus. Mauris volutpat condimentum finibus. Nullam efficitur tempor felis eget varius.",
+            "sections": [
+              {
+                "title": "Awesome 1",
+                "image": "img/background.jpeg",
+                "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur."
+              }
+            ],
+            "lowerContent": "This is the end of the section."
+          }
+        }
+        this.push("data.content.sections", newSection)
+      this.selected = this.selected != undefined ? this.data.content.sections.length -1 : 0;
+      },
+      _checkEquals: function(a,b){
+        return a == b;
+      },
+      _move: function(e){
+        i = parseInt(e.target.getAttribute("data-index"));
+        right = parseInt(e.target.getAttribute("data-dir"));
+        i = i + right;
+        if (i == 0 || i >= this.data.content.sections.length){return;}
+        m = this.splice("data.content.sections", i-1, 1)
+        k = this.splice("data.content.sections", i, 0, m[0])
+        this.selected = right ? this.selected + 1 : this.selected - 1;
+      },
+      _del: function(e){
+        this.splice("data.content.sections", e.target.getAttribute("data-index"), 1)
       }
     });
   </script>

@@ -28,25 +28,31 @@ Usage Example:
         display: block;
       }
       .section {
-        padding: 5px;
-        margin: 10px;
+        padding: 10px;
+        margin: 20px;
+        min-width: 250px;
+        max-width: 300px;
+        /*border: 1px solid lightgray;
+        border-radius: 3px;*/
       }
     </style>
     
     <paper-input label="Title" value="{{data.title}}"></paper-input>
     <paper-textarea label="Content" value="{{data.content}}"></paper-textarea>
-    <h3>Cards</h3>
-    <template is="dom-repeat" items="{{data.sections}}">
-      <div class="section">
-        <paper-input label="Title" value="{{item.title}}"></paper-input>
-        <paper-textarea label="Content" value="{{item.content}}"></paper-textarea>
-        <paper-input label="Image Url" value="{{item.image}}"></paper-input>
-        <paper-input label="Link" value="{{item.link}}"></paper-input>
-        <paper-input label="Link Button Text" value="{{item.linkButton}}"></paper-input>
-        <paper-button index="[[index]]" on-tap="_removeSection">Remove Card</paper-button>
-      </div>
-    </template>
-    <paper-button on-tap="_addSection">Add Card</paper-button>
+    <h3>Cards</h3><paper-button on-tap="_addSection">Add Card</paper-button>
+    <div class="cards layout horizontal wrap around-justified">
+      <template is="dom-repeat" items="{{data.sections}}">
+        <div class="section">
+          <paper-input label="Title" value="{{item.title}}"></paper-input>
+          <paper-textarea label="Content" value="{{item.content}}"></paper-textarea>
+          <paper-input label="Image Url" value="{{item.image}}"></paper-input>
+          <paper-input label="Link" value="{{item.link}}"></paper-input>
+          <paper-input label="Link Button Text" value="{{item.linkButton}}"></paper-input>
+          <paper-button index="[[index]]" on-tap="_removeSection">Remove Card</paper-button>
+        </div>
+      </template>
+    </div>
+    
     <paper-textarea label="Lower Content" value="{{data.lowerContent}}"></paper-textarea>
 
   </template>

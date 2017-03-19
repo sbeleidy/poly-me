@@ -8,22 +8,34 @@
 
     <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
     <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../../iron-flex-layout/iron-flex-layout-classes.html">
 
     <link rel="import" href="../poly-me-editor.html">
+    <link rel="import" href="../poly-me-render.html">
     <link rel="import" href="../../json-box/json-box.html">
 
-    <style is="custom-style" include="demo-pages-shared-styles">
+    <style is="custom-style" include="demo-pages-shared-styles iron-flex iron-flex-alignment">
     </style>
 
   </head>
   <body>
 
-    <div class="layout horizontal">
+    <div class="">
       <h3>Poly-me editor</h3>
       <demo-snippet>
         <template is="dom-bind">
-          <poly-me-editor data="[[data2]]"></poly-me-editor>
-          <json-box label="Cards with Images JSON" id="json2" show-buttons current="{{data2}}" max-rows="10"></json-box>
+          <style>
+            .border{
+              border-right: 1px solid #333;
+              width: 1px;
+              margin: 10px;
+            }
+          </style>
+          <div class="layout horizontal">
+            <poly-me-editor data="{{data}}" class="flex"></poly-me-editor>
+            <div class="border"></div>
+            <poly-me-render data="{{data}}" class="flex"></poly-me-render>
+          </div>
         </template>
       </demo-snippet>
     </div>
