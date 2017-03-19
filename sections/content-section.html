@@ -84,7 +84,9 @@ Usage Example:
         <template is="dom-repeat" items="{{data.sections}}" as="subdata">
           <div class="sub flex">
             <h3>{{subdata.title}}</h3>
-            <img src$="{{subdata.image}}" alt$="{{subdata.title}}">
+            <template is="dom-if" if="[[_isSet(subdata.image)]]">
+              <img src$="{{subdata.image}}" alt$="{{subdata.title}}">
+            </template>
             <p>{{subdata.content}}</p>
           </div>
         </template>
@@ -105,7 +107,10 @@ Usage Example:
         data: {
           type: Object
         }
-      }
+      },
+      _isSet: function(a){
+        return !(a == null || typeof a === 'undefined' || a == "");
+      },
     });
   </script>
 </dom-module>

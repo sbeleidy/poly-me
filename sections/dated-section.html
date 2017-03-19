@@ -22,7 +22,7 @@ Section data should be structured as follows:
       "image": "Optional image for the card",
       "org": "Subtitle ex. organization",
       "orgLink": "Subtitle link",
-      "start" "Start date",
+      "start": "Start date",
       "end": "End date"
     },
     {
@@ -69,15 +69,22 @@ Usage Example:
         padding: 10px 20px;
       }
 
+      .card-image {
+        margin: auto;
+        max-width: 100%;
+      }
+
     </style>
 
 
     <p>{{data.content}}</p>      
       <div class="dated subsections layout horizontal wrap around-justified">
         <template is="dom-repeat" items="{{data.sections}}" as="subdata">
-          <paper-card class="sub flex" image="{{subdata.image}}">
+          <paper-card class="sub flex" >
             <h3>{{subdata.title}}</h3>
-            <!--<img src$="{{subdata.image}}" alt$="{{subdata.title}}">-->
+            <template is="dom-if" if="[[_isSet(subdata.image)]]" >
+              <img class="card-image" src="[[subdata.image]]" alt="[[subdata.title]]">
+            </template>
             <h5><a href$="{{subdata.orgLink}}" target="_blank">{{subdata.org}}</a></h5>
             <h6>{{subdata.start}} - {{subdata.end}}</h6>
             <p>{{subdata.content}}</p>

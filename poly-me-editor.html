@@ -45,11 +45,10 @@ Usage Example:
     <paper-input label="Location" value="{{data.content.location}}"></paper-input>
     <!-- Social sections -->
 
-    <!-- Tabs -->
-
-    <!-- Tab Editors-->
+    
+    <!-- Add Tabs-->
     <paper-menu-button elevation="3">
-      <paper-button raised class="dropdown-trigger">Add section</paper-button>
+      <paper-button raised class="dropdown-trigger">Add tab</paper-button>
       <paper-menu class="dropdown-content">
         <paper-item name="content" on-tap="_addSection">Content</paper-item>
         <paper-item name="cards" on-tap="_addSection">Cards</paper-item>
@@ -59,6 +58,8 @@ Usage Example:
         <paper-item name="jupyterNotebooks" on-tap="_addSection">Jupyter Notebooks</paper-item>
       </paper-menu>
     </paper-menu-button>
+
+    <!-- Tabs -->
     <div class="tabs-div">
       <paper-tabs selected="{{selected}}" scrollable>
         <template is="dom-repeat" items="{{data.content.sections}}">
@@ -109,12 +110,12 @@ Usage Example:
           newSection = {
             "title": "Cards",
             "type": "cards",
-            "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur. Nam venenatis tellus ac gravida cursus. Mauris volutpat condimentum finibus. Nullam efficitur tempor felis eget varius.",
+            "content": "This is the top section of the content.",
             "sections": [
               {
-                "title": "Awesome 1",
+                "title": "First Card",
                 "image": "img/background.jpeg",
-                "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur."
+                "content": "This is text for the first section"
               }
             ],
             "lowerContent": "This is the end of the section."
@@ -123,12 +124,12 @@ Usage Example:
           newSection = {
             "title": "Content",
             "type": "content",
-            "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur. Nam venenatis tellus ac gravida cursus. Mauris volutpat condimentum finibus. Nullam efficitur tempor felis eget varius.",
+            "content": "This is the top section of the content.",
             "sections": [
               {
-                "title": "Awesome 1",
+                "title": "First Section",
                 "image": "img/background.jpeg",
-                "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur."
+                "content": "This is text for the first section"
               }
             ],
             "lowerContent": "This is the end of the section."
@@ -137,12 +138,16 @@ Usage Example:
           newSection = {
             "title": "Dated",
             "type": "dated",
-            "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur. Nam venenatis tellus ac gravida cursus. Mauris volutpat condimentum finibus. Nullam efficitur tempor felis eget varius.",
+            "content": "This is the top section of the content.",
             "sections": [
               {
-                "title": "Awesome 1",
+                "title": "First Dated Card",
                 "image": "img/background.jpeg",
-                "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur."
+                "content": "This is a description of the first dated section.",
+                "org": "Subtitle ex. organization",
+                "orgLink": "Subtitle link",
+                "start": "Start date",
+                "end": "End date"
               }
             ],
             "lowerContent": "This is the end of the section."

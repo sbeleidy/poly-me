@@ -9,19 +9,19 @@
 
 
 <!--
-`cards-section-editor`
+`dated-section-editor`
 
-A form editor for a poly-me cards-section.
+A form editor for a poly-me dated-section.
 
 Usage Example:
 ```html
-  <cards-section-editor data="{{data}}"></cards-section-editor>
+  <dated-section-editor data="{{data}}"></dated-section-editor>
 ```
 
-@demo demo/cards.html 
+@demo demo/dated.html 
 -->
 
-<dom-module id="cards-section-editor">
+<dom-module id="dated-section-editor">
   <template>
     <style include="iron-flex iron-flex-alignment">
       :host {
@@ -46,8 +46,10 @@ Usage Example:
           <paper-input label="Title" value="{{item.title}}"></paper-input>
           <paper-textarea label="Content" value="{{item.content}}"></paper-textarea>
           <paper-input label="Image Url" value="{{item.image}}"></paper-input>
-          <paper-input label="Link" value="{{item.link}}"></paper-input>
-          <paper-input label="Link Button Text" value="{{item.linkButton}}"></paper-input>
+          <paper-input label="Organization Name" value="{{item.org}}"></paper-input>
+          <paper-input label="Organization Link" value="{{item.orgLink}}"></paper-input>
+          <paper-input label="Start Date" value="{{item.start}}"></paper-input>
+          <paper-input label="End Date" value="{{item.end}}"></paper-input>
           <paper-button index="[[index]]" on-tap="_removeSection">Remove Card</paper-button>
         </div>
       </template>
@@ -60,7 +62,7 @@ Usage Example:
   <script>
     Polymer({
 
-      is: 'cards-section-editor',
+      is: 'dated-section-editor',
 
       properties: {
         /**

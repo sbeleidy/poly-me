@@ -1,11 +1,11 @@
 <link rel="import" href="../polymer/polymer.html">
 
 <link rel="import" href="editors/cards-section-editor.html">
-<!--<link rel="import" href="editors/content-section-editor.html">
-<link rel="import" href="editors/contact-section-editor.html">
+<link rel="import" href="editors/content-section-editor.html">
+<!--<link rel="import" href="editors/contact-section-editor.html">-->
 <link rel="import" href="editors/dated-section-editor.html">
-<link rel="import" href="editors/google-form-section-editor.html">
-<link rel="import" href="editors/jupyter-notebooks-section-editor.html">-->
+<!--<link rel="import" href="editors/google-form-section-editor.html">-->
+<!--<link rel="import" href="editors/jupyter-notebooks-section-editor.html">-->
 
 <!--
 `poly-me-section-editor`
@@ -22,27 +22,27 @@ Example:
   <template>
     
     <template is="dom-if" if="{{_checkEquals(data.type, 'content')}}">
-      <content-section-editor data="[[data]]"></content-section-editor>
+      <content-section-editor data="{{data}}"></content-section-editor>
     </template>
 
     <template is="dom-if" if="{{_checkEquals(data.type, 'cards')}}">
-      <cards-section-editor data="[[data]]"></cards-section-editor>
+      <cards-section-editor data="{{data}}"></cards-section-editor>
     </template>
 
     <template is="dom-if" if="{{_checkEquals(data.type, 'dated')}}">
-      <dated-section-editor data="[[data]]"></dated-section-editor>
+      <dated-section-editor data="{{data}}"></dated-section-editor>
     </template>
 
     <template is="dom-if" if="{{_checkEquals(data.type, 'contact')}}">
-      <contact-section-editor data="[[data]]"></contact-section-editor>
+      <contact-section-editor data="{{data}}"></contact-section-editor>
     </template>
 
     <template is="dom-if" if="{{_checkEquals(data.type, 'googleForm')}}">
-      <google-form-section-editor data="[[data]]"></google-form-section-editor>
+      <google-form-section-editor data="{{data}}"></google-form-section-editor>
     </template>
 
     <template is="dom-if" if="{{_checkEquals(data.type, 'jupyterNotebooks')}}">
-      <jupyter-notebooks-section-editor data="[[data]]"></jupyter-notebooks-section-editor>
+      <jupyter-notebooks-section-editor data="{{data}}"></jupyter-notebooks-section-editor>
     </template>
 
   </template>

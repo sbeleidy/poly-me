@@ -9,19 +9,19 @@
 
 
 <!--
-`cards-section-editor`
+`content-section-editor`
 
-A form editor for a poly-me cards-section.
+A form editor for a poly-me content-section.
 
 Usage Example:
 ```html
-  <cards-section-editor data="{{data}}"></cards-section-editor>
+  <content-section-editor data="{{data}}"></content-section-editor>
 ```
 
-@demo demo/cards.html 
+@demo demo/content.html 
 -->
 
-<dom-module id="cards-section-editor">
+<dom-module id="content-section-editor">
   <template>
     <style include="iron-flex iron-flex-alignment">
       :host {
@@ -32,23 +32,19 @@ Usage Example:
         margin: 20px;
         min-width: 250px;
         max-width: 300px;
-        /*border: 1px solid lightgray;
-        border-radius: 3px;*/
       }
     </style>
     
     <paper-input label="Title" value="{{data.title}}"></paper-input>
     <paper-textarea label="Content" value="{{data.content}}"></paper-textarea>
-    <h3>Cards</h3><paper-button on-tap="_addSection">Add Card</paper-button>
-    <div class="cards layout horizontal wrap around-justified">
+    <h3>Sections</h3><paper-button on-tap="_addSection">Add Section</paper-button>
+    <div class="content layout horizontal wrap around-justified">
       <template is="dom-repeat" items="{{data.sections}}">
         <div class="section">
           <paper-input label="Title" value="{{item.title}}"></paper-input>
           <paper-textarea label="Content" value="{{item.content}}"></paper-textarea>
           <paper-input label="Image Url" value="{{item.image}}"></paper-input>
-          <paper-input label="Link" value="{{item.link}}"></paper-input>
-          <paper-input label="Link Button Text" value="{{item.linkButton}}"></paper-input>
-          <paper-button index="[[index]]" on-tap="_removeSection">Remove Card</paper-button>
+          <paper-button index="[[index]]" on-tap="_removeSection">Remove Section</paper-button>
         </div>
       </template>
     </div>
@@ -60,7 +56,7 @@ Usage Example:
   <script>
     Polymer({
 
-      is: 'cards-section-editor',
+      is: 'content-section-editor',
 
       properties: {
         /**
@@ -73,9 +69,7 @@ Usage Example:
             return {"sections": [{
               "title": "",
               "content": "",
-              "image": "",
-              "link": "",
-              "linkButton": "View"
+              "image": ""
             }]}
           }
         },
