@@ -10,24 +10,12 @@
 
 A section of poly-me that displays a google form. Note: Make sure the link url ends with a "/viewform" as shown in the example below.
 
-Section data should be structured as follows for one notebook:
+Section data should be structured as follows:
 
 ```json
 {
   "title": "Name to appear in tab",
   "type": "jupyterNotebooks",
-  "onlyOne": true,
-  "link": "raw link to notebook"
-}
-```
-
-OR as follows for multiple notebooks:
-
-```json
-{
-  "title": "Name to appear in tab",
-  "type": "jupyterNotebooks",
-  "onlyOne": false,
   "links": [
     {
       "name": "Name of notebook",
@@ -76,14 +64,14 @@ Usage Example:
     </style>
 
     <!-- One Notebook -->
-    <template is="dom-if" if="{{data.onlyOne}}">
+    <template is="dom-if" if="[[onlyOne]]">
       <div class="notebook-section">
-        <jupyter-notebook src="{{data.link}}"></jupyter-notebook>
+        <jupyter-notebook src="[[notebookSrc]]"></jupyter-notebook>
       </div>
     </template>
 
     <!-- Multiple Notebooks -->
-    <template is="dom-if" if="{{!data.onlyOne}}">
+    <template is="dom-if" if="[[!onlyOne]]">
       <div class="layout horizontal wrap center-justified notebook-cards">
         <template is="dom-repeat" items="[[data.links]]">
           <paper-card on-tap="_select" index="[[index]]">
@@ -119,10 +107,28 @@ Usage Example:
         selected: {
           type: Number,
           value: 0
+        },
+        onlyOne: {
+          type: Boolean,
+          computed: "_computeOnlyOne(data)"
+        },
+        notebookSrc: {
+          type: String,
+          computed: "_computeOneNotebookSrc(data)"
         }
       },
       _select: function(e){
         this.selected = e.target.index;
+      },
+      _computeOnlyOne(data){
+        if (data.links != undefined){
+          return data.links.length == 1;
+        }
+      },
+      _computeOneNotebookSrc: function(data){
+        if (data.links != undefined){
+          return data.links[0].link;
+        }
       }
     });
   </script>

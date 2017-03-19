@@ -29,8 +29,12 @@
             document.querySelector("#json").start = {
               "title": "Name to appear in tab",
               "type": "jupyterNotebooks",
-              "onlyOne": true,
-              "link": "https://raw.githubusercontent.com/ehmatthes/intro_programming/master/notebooks/index.ipynb"
+              "links": [
+                {
+                  "name": "Introduction To Python",
+                  "link": "https://raw.githubusercontent.com/ehmatthes/intro_programming/master/notebooks/index.ipynb"
+                }
+              ]
             };
             document.querySelector("#json").reset();
           </script>
@@ -51,7 +55,6 @@
             document.querySelector("#json2").start = {
               "title": "Name to appear in tab",
               "type": "jupyterNotebooks",
-              "onlyOne": false,
               "links": [
                 {
                   "name": "Introduction To Python",

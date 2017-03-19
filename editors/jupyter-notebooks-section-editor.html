@@ -9,19 +9,19 @@
 
 
 <!--
-`contact-section-editor`
+`jupyter-notebooks-section-editor`
 
-A form editor for a poly-me contact-section.
+A form editor for a poly-me jupyter-notebooks-section.
 
 Usage Example:
 ```html
-  <contact-section-editor data="{{data}}"></contact-section-editor>
+  <jupyter-notebooks-section-editor data="{{data}}"></jupyter-notebooks-section-editor>
 ```
 
-@demo demo/contact.html 
+@demo demo/jupyter-notebooks.html 
 -->
 
-<dom-module id="contact-section-editor">
+<dom-module id="jupyter-notebooks-section-editor">
   <template>
     <style include="iron-flex iron-flex-alignment">
       :host {
@@ -38,16 +38,24 @@ Usage Example:
     </style>
     
     <paper-input label="Title" value="{{data.title}}"></paper-input>
-    <paper-textarea label="Content" value="{{data.content}}"></paper-textarea>
-    <paper-textarea label="Email" type="email" value="{{data.email}}"></paper-textarea>
-    <paper-textarea label="Subject of emails" value="{{data.subject}}"></paper-textarea>
+    <h3>Notebook</h3><paper-button on-tap="_addSection">Add Notebook</paper-button>
+    <div class="cards layout horizontal wrap around-justified">
+      <template is="dom-repeat" items="{{data.links}}">
+        <div class="section">
+          <paper-input label="Name" value="{{item.name}}"></paper-input>
+          <paper-textarea label="Description" value="{{item.description}}"></paper-textarea>
+          <paper-input label="Notebook Url" value="{{item.link}}"></paper-input>
+          <paper-button index="[[index]]" on-tap="_removeSection">Remove Notebook</paper-button>
+        </div>
+      </template>
+    </div>
 
   </template>
 
   <script>
     Polymer({
 
-      is: 'contact-section-editor',
+      is: 'jupyter-notebooks-section-editor',
 
       properties: {
         /**
@@ -57,12 +65,10 @@ Usage Example:
           type: Object,
           notify: true,
           value: function(){
-            return {"sections": [{
-              "title": "",
-              "content": "",
-              "image": "",
+            return {"links": [{
+              "name": "",
               "link": "",
-              "linkButton": "View"
+              "description": ""
             }]}
           }
         },
@@ -76,25 +82,21 @@ Usage Example:
       _addSection: function(e){
         if(Object.keys(this.data).length === 0 && this.data.constructor === Object){
           console.log(this.data)
-          this.data = {"sections": [{
-              "title": "",
-              "content": "",
-              "image": "",
+          this.data = {"links": [{
+              "name": "",
               "link": "",
-              "linkButton": "View"
+              "description": ""
             }]}
         } else {
-          this.push("data.sections", {
-            "title": "",
-            "content": "",
-            "image": "",
+          this.push("data.links", {
+            "name": "",
             "link": "",
-            "linkButton": "View"
+            "description": ""
           });
         }
       },
       _removeSection: function(e){
-          this.splice("data.sections", e.target.index, 1);
+          this.splice("data.links", e.target.index, 1);
       }
     });
   </script>

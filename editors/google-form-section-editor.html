@@ -9,19 +9,19 @@
 
 
 <!--
-`contact-section-editor`
+`google-form-section-editor`
 
-A form editor for a poly-me contact-section.
+A form editor for a poly-me google-form-section.
 
 Usage Example:
 ```html
-  <contact-section-editor data="{{data}}"></contact-section-editor>
+  <google-form-section-editor data="{{data}}"></google-form-section-editor>
 ```
 
-@demo demo/contact.html 
+@demo demo/google-form.html 
 -->
 
-<dom-module id="contact-section-editor">
+<dom-module id="google-form-section-editor">
   <template>
     <style include="iron-flex iron-flex-alignment">
       :host {
@@ -38,16 +38,14 @@ Usage Example:
     </style>
     
     <paper-input label="Title" value="{{data.title}}"></paper-input>
-    <paper-textarea label="Content" value="{{data.content}}"></paper-textarea>
-    <paper-textarea label="Email" type="email" value="{{data.email}}"></paper-textarea>
-    <paper-textarea label="Subject of emails" value="{{data.subject}}"></paper-textarea>
+    <paper-textarea label="Link to google form" type="url" value="{{data.link}}"></paper-textarea>
 
   </template>
 
   <script>
     Polymer({
 
-      is: 'contact-section-editor',
+      is: 'google-form-section-editor',
 
       properties: {
         /**

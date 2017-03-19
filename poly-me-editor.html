@@ -35,6 +35,11 @@ Usage Example:
       paper-menu paper-item {
         cursor: pointer;
       }
+
+      .tabs-div {
+        background: lightgray;
+        margin-bottom: 20px;
+      }
     </style>
 
 
@@ -71,6 +76,9 @@ Usage Example:
       <iron-pages selected="{{selected}}">
         <template is="dom-repeat" items="{{data.content.sections}}" as="section" index-as=tabNumb>
           <div>
+            <div>
+              Current tab is a [[section.type]] tab.
+            </div>
             <!--Change order-->
             <paper-button raised data-index$="[[tabNumb]]" data-dir="0" on-tap="_move">Move Left</paper-button>
             <paper-button raised data-index$="[[tabNumb]]" data-dir="1" on-tap="_move">Move Right</paper-button>
@@ -164,29 +172,22 @@ Usage Example:
           newSection = {
             "title": "Form",
             "type": "googleForm",
-            "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur. Nam venenatis tellus ac gravida cursus. Mauris volutpat condimentum finibus. Nullam efficitur tempor felis eget varius.",
-            "sections": [
-              {
-                "title": "Awesome 1",
-                "image": "img/background.jpeg",
-                "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur."
-              }
-            ],
-            "lowerContent": "This is the end of the section."
+            "link": "https://docs.google.com/forms/d/e/1FAIpQLScRdspVcg_wUAGO5aOGlKTAnpNJ8PLnHI72mGgVczfDeatAAg/viewform"
           }
         } else if(sectionType == "jupyterNotebooks"){
           newSection = {
             "title": "Notebooks",
             "type": "jupyterNotebooks",
-            "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur. Nam venenatis tellus ac gravida cursus. Mauris volutpat condimentum finibus. Nullam efficitur tempor felis eget varius.",
-            "sections": [
+            "links": [
               {
-                "title": "Awesome 1",
-                "image": "img/background.jpeg",
-                "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend porttitor dapibus. Fusce vulputate eget nisl in venenatis. Aliquam faucibus tristique lorem ut efficitur."
+                "name": "Introduction To Python",
+                "link": "https://raw.githubusercontent.com/ehmatthes/intro_programming/master/notebooks/index.ipynb"
+              },
+              {
+                "name": "Python For Developers",
+                "link": "https://raw.githubusercontent.com/ricardoduarte/python-for-developers/master/Chapter1/Chapter1_Introduction.ipynb"
               }
-            ],
-            "lowerContent": "This is the end of the section."
+            ]
           }
         }
         this.push("data.content.sections", newSection)
