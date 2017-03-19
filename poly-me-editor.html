@@ -44,11 +44,22 @@ Usage Example:
 
 
     <paper-input label="Name" value="{{data.content.name}}"></paper-input>
-    <paper-input label="Profile Picture" value="{{data.content.profileImage}}" type="url" ></paper-input>
-    <paper-input label="Background Picture" value="{{data.content.backgroundImage}}" type="url"></paper-input>
+    <paper-input label="Profile Picture Link" value="{{data.content.profileImage}}" type="url" ></paper-input>
+    <paper-input label="Background Picture Link" value="{{data.content.backgroundImage}}" type="url"></paper-input>
     <paper-input label="Position" value="{{data.content.position}}"></paper-input>
     <paper-input label="Location" value="{{data.content.location}}"></paper-input>
+    
     <!-- Social sections -->
+    <paper-input label="Social section title" value="{{data.content.social.title}}"></paper-input>
+    
+    <paper-button raised on-tap="_addSocial">Add network</paper-button>
+    
+    <template is="dom-repeat" items="{{data.content.social.profiles}}" >
+      <paper-input label="Network" value="{{item.network}}"></paper-input>
+      <paper-input label="Link" value="{{item.link}}" type="url" ></paper-input>
+      <paper-button raised on-tap="_removeSocial" data-index="[[index]]">Remove network</paper-button>
+    </template>
+    
 
     
     <!-- Add Tabs-->
@@ -105,7 +116,7 @@ Usage Example:
           notify: true,
           value: ()=>{
             return {
-              content: {sections:[]},
+              content: {sections:[], social:{profiles:[]}},
               settings: {}
             }
           }
@@ -195,6 +206,12 @@ Usage Example:
       },
       _checkEquals: function(a,b){
         return a == b;
+      },
+      _addSocial: function(e){
+        this.push("data.content.social.profiles", {network: "twitter", "link": ""})
+      },
+      _removeSocial: function(e){
+        this.splice("data.content.social.profiles", e.target.getAttribute("data-index"), 1)
       },
       _move: function(e){
         i = parseInt(e.target.getAttribute("data-index"));
